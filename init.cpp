@@ -5,6 +5,7 @@
 
 #pragma cling add_library_path("/usr/local/lib")
 #pragma cling add_include_path("/usr/local/include/opencv4")
+#pragma cling add_include_path("external/FunctionalPlus/include")
 
 #pragma cling load("libopencv_core.so")
 #pragma cling load("libopencv_calib3d.so")
