@@ -20,7 +20,7 @@ cling is stil under heavy development and might fail (for example a segfault in 
 
 ## In a shell / console only
 
-See the interactive session example and avdvices at [examples/shell_cling/Readme.md](examples/shell_cling/Readme.md).
+See the interactive session example and advices at [examples/shell_cling/Readme.md](examples/shell_cling/Readme.md).
 
 ## In jupyter notebook
 
@@ -32,7 +32,12 @@ See the interactive session example and avdvices at [examples/shell_cling/Readme
 # Installation
 
 ## No installation (!) : Test it online on mybinder.org
-Head on to http://mybinder.org/
+
+Head on to [Binder](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FReadme.ipynb)
+
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FReadme.ipynb)
+
 
 ## Docker : quick test without modifying your machine
 
