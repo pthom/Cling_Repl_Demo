@@ -1,6 +1,6 @@
 #pragma cling add_library_path("/root/miniconda3/lib/")
 #pragma cling add_include_path("/root/miniconda3/include")
-
+// CONDA_DIR
 
 #pragma cling load("libopencv_core.so")
 #pragma cling load("libopencv_calib3d.so")
