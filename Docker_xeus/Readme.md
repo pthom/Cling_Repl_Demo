@@ -3,7 +3,6 @@
 
 ## Create the container image
 ````bash
-cd repl_cling/Docker/ubuntu
 ./docker_create_image.sh # will build a docker image with cling (be patient)
 ````
 
@@ -15,24 +14,8 @@ cd repl_cling/Docker/ubuntu
  # /sources_docker is linked to FunctionalPlus/repl_cling on your host machine
 ````
 
-Inside the container, run a X server
+Inside the container, run jupyter-notebook with the correct options.
 
 ````bash
-/start_x_vnc_quiet.sh # run a X11 server
-````
-
-Launch a vnc viewer on your host machine and connect to `localhost` -> you will see the
-screen of the docker container
-
-
-Then, run the interactive sessions instructions given inside [../Readme.md](../Readme.md):
-
-
-````cpp
-cling --std=c++14
-
-.L init.cpp
-cv::Mat lena = cv::imread("lena.jpg");
-cv::imshow("lena", lena); cv::waitKey(100);
-//etc...
+jnote.sh
 ````
