@@ -1,55 +1,77 @@
-# Using fplus in a functional REPL via cling
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)
 
-# About cling
+# C++ REPL with cling and jupyter notebook / tutorial and advices
 
-> Cling is an interactive C++ interpreter, built on top of Clang and LLVM compiler infrastructure. Cling realizes the read-eval-print loop (REPL) concept, in order to leverage rapid application development. Implemented as a small extension to LLVM and Clang, the interpreter reuses their strengths such as the praised concise and expressive compiler diagnostics.
+## About cling
 
-It is based on the Root data analysis framework, and originates from the CERN.
+> [Cling](https://github.com/root-project/cling) is an interactive C++ interpreter, built on top of Clang and LLVM compiler infrastructure. Cling realizes the read-eval-print loop (REPL) concept, in order to leverage rapid application development. Implemented as a small extension to LLVM and Clang, the interpreter reuses their strengths such as the praised concise and expressive compiler diagnostics.
 
-See https://github.com/root-project/cling and https://cdn.rawgit.com/root-project/cling/master/www/index.html
+It is based on the Root data analysis framework, and originates from the CERN. Cling is stil under heavy development and might fail (for example a segfault in your program will exit cling REPL). However it is quite useful, and used everyday at the CERN.
 
-cling is a mix of `clang` + REPL. Thus, it accepts the standard clang argument (`-L`, `--std=c++14`, `-I`, etc)
+## About xeus cling
 
-cling is stil under heavy development and might fail (for example a segfault in your program will exit cling REPL). However it is quite usable, and used everydauy at the CERN.
+[Xeus cling](https://github.com/QuantStack/xeus-cling) is a Jupyter kernel for the C++ programming language based on cling.
 
-# Advices and Gotchas
+Read the docs [here](https://xeus-cling.readthedocs.io/en/latest/).
 
+## Advices and Gotchas
 
-
-# Interactive session examples
-
-## In a shell / console only
-
-See the interactive session example and advices at [examples/shell_cling/Readme.md](examples/shell_cling/Readme.md).
-
-## In jupyter notebook
-
-See the interactive session example and avdvices at [examples/shell_cling/Readme.md](examples/shell_cling/Readme.md).
-
-## In a shell, displaying image via opencv
+The cling and xeus docs are good, but some informations are missing : see the page ["Advices and Gotchas"](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Advices_And_Gotchas.ipynb) for more details.
 
 
-# Installation
+----------------
 
-## No installation (!) : Test it online on mybinder.org
+# Interactive C++ REPL session examples
 
-Head on to [Binder](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FReadme.ipynb)
+## Interactive C++ REPL session from the console
+See the interactive session example and advices here :
+
+[examples/shell_cling/Shell_Functional_REPL.md](examples/shell_cling/Shell_Functional_REPL.md).
+
+## Interactive C++ REPL session inside jupyter notebook
+
+### Intro to jupyter notebook
+
+If you do not know jupyter notebook, take some time to familiarize yourself with the concept here:
+* [Official site](http://jupyter.org/)
+* [Try in online on the officiam site](http://jupyter.org/try)
+* [Quick introduction to Jupyter Notebook](https://www.youtube.com/watch?v=jZ952vChhuI).
+
+### A session of C++ with opencv
+
+This demo shows how to load a library (opencv), and how to display images inside jupyter notebook.
+
+Demo links:
+* [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/tree/master/examples/notebooks/opencv_example.ipynb)  (will open immediately)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2Fopencv_example.ipynb" target="_blank">Online / runnable REPL</a>  (will open in a separate window. Requirew 1 minute to load)
+* [From this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
+
+### A session of C++ functional programming
+
+This demo shows an example of a session functional programming in C++ using of A REPL (since a REPL is very adapted to functional programming).
+
+Below is an example, using [FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus) (a functional programming library for C++).
+FunctionalPlus provides an [API search engine](http://www.editgym.com/fplus-api-search/), similar to haskell's [hoogle](https://www.haskell.org/hoogle/).
+
+Demo links:
+* [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Functional_REPL.ipynb)  (will open immediately)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FFunctional_REPL.ipynb" target="_blank">Online / runnable REPL</a>  (will open in a separate window. Requirew 1 minute to load)
+* [From this repo](http://localhost:8888/tree/examples/notebooks/Functional_REPL.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FReadme.ipynb)
 
+# Installation : how to test these examples on your computer
 
 ## Docker : quick test without modifying your machine
-
-If you do not want to install cling on your machine, or if you are not running under linux, you can use the docker image provided inside `Docker_xeus`.
+If you do not want to modify your machine, you can use the docker image provided inside `Docker_xeus`.
 
 Refer to [Docker_xeus/Readme.md](Docker_xeus/Readme.md).
 
-## Linux
-Nightly build are available here: https://root.cern.ch/download/cling/
-Download them and add to your path.
+## Full installation on your machine
+Refer to the instructions on the [xeus cling web page](https://github.com/QuantStack/xeus-cling)
 
-## Mac
-````bash
-brew install cling
-````
+## I don't want to install anything!
+
+As mentioned before, these demos are [available online on mybinder.org](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)

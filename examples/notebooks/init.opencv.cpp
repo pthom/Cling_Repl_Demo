@@ -1,12 +1,10 @@
-#pragma cling add_library_path("/root/miniconda3/lib/")
-#pragma cling add_include_path("/root/miniconda3/include")
+#pragma cling add_library_path("/srv/conda/lib/")
+#pragma cling add_include_path("/srv/conda/include")
 // CONDA_DIR
 
-#pragma cling load("libopencv_core.so")
-#pragma cling load("libopencv_calib3d.so")
-#pragma cling load("libopencv_highgui.so")
-#pragma cling load("libopencv_imgcodecs.so")
-#pragma cling load("libopencv_imgproc.so")
+#pragma cling load("libopencv_core")
+#pragma cling load("libopencv_imgcodecs")
+#pragma cling load("libopencv_imgproc")
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>

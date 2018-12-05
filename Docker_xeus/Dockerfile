@@ -13,4 +13,7 @@ RUN $install_scripts/conda_xeus_cling.sh
 ADD install_scripts/conda_opencv.sh $install_scripts/conda_opencv.sh
 RUN $install_scripts/conda_opencv.sh
 
+# symlink /srv/conda required for path compatibility with mybinder.org
+RUN mkdir -p /src && ln -s /root/miniconda3 /srv/conda
+
 WORKDIR /sources_docker
