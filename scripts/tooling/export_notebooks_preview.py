@@ -9,6 +9,7 @@ os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 NOTEBOOKS_DIR = THIS_DIR + "/../../examples/notebooks"
+HTML_OUTPUT_DIR = NOTEBOOKS_DIR + "/html"
 
 
 def file_with_extension(extension:str, directory:str, add_directory:bool = True):
@@ -30,13 +31,19 @@ def find_md():
 
 
 def make_reveal_js_slideshow(notebook_file):
-  base_cmd = "jupyter nbconvert --to slides {} --reveal-prefix=reveal.js --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True"
-  cmd = base_cmd.format(notebook_file)
+  base_cmd = """jupyter nbconvert --to slides {} \
+    --output-dir={}
+    --reveal-prefix=reveal.js \
+    --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True
+   """
+  cmd = base_cmd.format(notebook_file, HTML_OUTPUT_DIR)
   subprocess.run(cmd, shell=True, check=True)
 
 def make_html_preview(notebook_file):
-  base_cmd = "jupyter nbconvert --to html {}"
-  cmd = base_cmd.format(notebook_file)
+  base_cmd = """jupyter nbconvert --to html {} \
+    --output-dir={}
+  """
+  cmd = base_cmd.format(notebook_file, HTML_OUTPUT_DIR)
   subprocess.run(cmd, shell=True, check=True)
 
 
