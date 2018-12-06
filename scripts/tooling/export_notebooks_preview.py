@@ -45,7 +45,7 @@ def make_reveal_js_slideshow(notebook_file):
   output_dir = filename_to_output_dir(notebook_file)
   print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
-    --output-dir={}
+    --output-dir={} \
     --reveal-prefix=reveal.js \
     --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True
    """
