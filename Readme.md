@@ -16,7 +16,7 @@ Read the docs [here](https://xeus-cling.readthedocs.io/en/latest/).
 
 ## Advices and Gotchas
 
-The cling and xeus docs are good, but some informations are missing : see the page ["Advices and Gotchas when using cling and jupyter"](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Advices_And_Gotchas.ipynb) for more details.
+The cling and xeus docs are good, but some informations are missing : see the page ["Advices and Gotchas when using cling and jupyter"](examples/notebooks/Advices_And_Gotchas.ipynb) for more details.
 
 
 ----------------
@@ -55,7 +55,7 @@ Below is an example, using [FunctionalPlus](https://github.com/Dobiasd/Functiona
 FunctionalPlus provides an [API search engine](http://www.editgym.com/fplus-api-search/), similar to haskell's [hoogle](https://www.haskell.org/hoogle/).
 
 Demo links:
-* [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Functional_REPL.ipynb)  (will open immediately)
+* [Online / Read only](examples/notebooks/Functional_REPL.ipynb)  (will open immediately)
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FFunctional_REPL.ipynb" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/Functional_REPL.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
