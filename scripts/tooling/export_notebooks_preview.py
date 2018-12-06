@@ -25,7 +25,8 @@ def find_notebooks():
   return file_with_extension(".ipynb", NOTEBOOKS_DIR)
 
 def find_md():
-  return file_with_extension(".md", NOTEBOOKS_DIR)
+  result = file_with_extension(".md", NOTEBOOKS_DIR) + file_with_extension(".md", NOTEBOOKS_DIR + "/help")
+  return result
 
 
 def make_reveal_js_slideshow(notebook_file):
@@ -69,5 +70,5 @@ def make_all_md_previews():
 
 
 if __name__ == "__main__":
-  make_all_slideshows()
+  # make_all_slideshows()
   make_all_md_previews()
