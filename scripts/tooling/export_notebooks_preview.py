@@ -39,7 +39,11 @@ def find_notebooks():
   return file_with_extension(".ipynb", NOTEBOOKS_DIR)
 
 def find_all_markdowns():
-  result = file_with_extension(".md", MARKDOWN_DIR)
+  result = []
+  for root, dirs, files in os.walk(MARKDOWN_DIR):
+    for file in files:
+      if file.endswith(".md"):
+        result.append(root + "/" + file)
   return result
 
 
@@ -113,14 +117,15 @@ def make_one_notebook_links(notebook_file):
   title, abstract = extract_notebook_infos(notebook_file)
   base_filename = os.path.basename(notebook_file).replace(".ipynb", "")
   md_template = """
-# {TITLE}
+## {TITLE}
 {ABSTRACT}
-* <a href="../notebooks/{FILENAME}.html" target="_blank">Static page</a>
-* <a href="{NOTEBOOK_LOCALHOST}/notebooks/{FILENAME}.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
-* <a href="../notebooks/{FILENAME}.slides.html" target="_blank">Slideshow</a>
+Choose between 4 ways to view this document:
+* <a href="../../notebooks/{FILENAME}.html" target="_blank">Static page</a>
+* <a href="../../notebooks/{FILENAME}.slides.html" target="_blank">As a slideshow</a>
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F{FILENAME}.ipynb"
   target="_blank">Interactive notebook online</a>
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
+* <a href="{NOTEBOOK_LOCALHOST}/notebooks/{FILENAME}.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 """
   md_code = md_template
   md_code = md_code.replace("{NOTEBOOK_LOCALHOST}", NOTEBOOK_LOCALHOST)
@@ -136,15 +141,14 @@ def make_all_notebook_links():
   for notebook_file in notebooks:
     md_code = make_one_notebook_links(notebook_file)
     all_code = all_code + md_code
-  print(all_code)
-  dst_file = MARKDOWN_DIR + "/0.all_notebooks.md"
+  dst_file = MARKDOWN_DIR + "/generated/all_notebooks.md"
   with open(dst_file, "w") as f:
     f.write(all_code)
 
 
 def make_md_index():
-  md_src_file = MARKDOWN_DIR + "/1.index.md"
-  md_dst_file = MARKDOWN_DIR + "/1.index_final.md"
+  md_src_file = MARKDOWN_DIR + "/index.template.md"
+  md_dst_file = MARKDOWN_DIR + "/generated/1.index.md"
   with open(md_src_file, "r") as f:
     final_content = f.read()
   lines = final_content.split("\n")
@@ -164,6 +168,7 @@ def make_md_index():
 
 if __name__ == "__main__":
   os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
+  mkdirp(HTML_OUTPUT_DIR)
   make_all_notebook_links()
   make_md_index()
   make_all_slideshows()

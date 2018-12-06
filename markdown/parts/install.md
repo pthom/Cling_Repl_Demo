@@ -10,6 +10,4 @@ Refer to the instructions on the [xeus cling web page](https://github.com/QuantS
 
 ## I don't want to install anything!
 
-As mentioned before, these demos are [available online on mybinder.org](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)
+As mentioned before, these demos are [available online on mybinder.org](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F).
