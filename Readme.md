@@ -43,7 +43,8 @@ This demo shows how to load a library (opencv), and how to display images inside
 
 Demo links:
 * [Online / Read only](examples/notebooks/opencv_example.ipynb)  (will open immediately)
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/opencv_example.ipynb/master" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2Fopencv_example.ipynb
+" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
 ### A session of C++ showing functional programming with REPL
@@ -56,7 +57,7 @@ FunctionalPlus provides an [API search engine](http://www.editgym.com/fplus-api-
 
 Demo links:
 * [Online / Read only](examples/notebooks/Functional_REPL.ipynb)  (will open immediately)
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Functional_REPL.ipynb/master" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FFunctional_REPL.ipynb" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/Functional_REPL.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
 
