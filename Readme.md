@@ -42,7 +42,7 @@ If you do not know jupyter notebook, take some time to familiarize yourself with
 This demo shows how to load a library (opencv), and how to display images inside jupyter notebook.
 
 Demo links:
-* [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/tree/master/examples/notebooks/opencv_example.ipynb)  (will open immediately)
+* [Online / Read only](examples/notebooks/opencv_example.ipynb)  (will open immediately)
 * <a href="examples/notebooks/opencv_example.ipynb" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
