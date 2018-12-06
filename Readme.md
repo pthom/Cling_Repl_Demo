@@ -34,8 +34,8 @@ See the interactive session example and advices here :
 
 If you do not know jupyter notebook, take some time to familiarize yourself with the concept here:
 * [Official site](http://jupyter.org/)
-* [Try in online on the officiam site](http://jupyter.org/try)
-* [Quick introduction to Jupyter Notebook](https://www.youtube.com/watch?v=jZ952vChhuI).
+* [Try in online on the official site](http://jupyter.org/try)
+* [Quick introduction to Jupyter Notebook](https://www.youtube.com/watch?v=jZ952vChhuI) (youtube video, 7')
 
 ### A session of C++ with opencv
 
@@ -44,7 +44,7 @@ This demo shows how to load a library (opencv), and how to display images inside
 Demo links:
 * [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/tree/master/examples/notebooks/opencv_example.ipynb)  (will open immediately)
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2Fopencv_example.ipynb" target="_blank">Online / runnable REPL</a>  (will open in a separate window. Requirew 1 minute to load)
-* [From this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
+* [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
 ### A session of C++ functional programming
 
@@ -56,8 +56,7 @@ FunctionalPlus provides an [API search engine](http://www.editgym.com/fplus-api-
 Demo links:
 * [Online / Read only](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Functional_REPL.ipynb)  (will open immediately)
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2FFunctional_REPL.ipynb" target="_blank">Online / runnable REPL</a>  (will open in a separate window. Requirew 1 minute to load)
-* [From this repo](http://localhost:8888/tree/examples/notebooks/Functional_REPL.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
-
+* [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/Functional_REPL.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
 
 # Installation : how to test these examples on your computer
