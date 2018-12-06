@@ -1,6 +1,6 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F)
 
-# C++ REPL with cling and jupyter notebook / tutorial and advices
+# Read-Eval-Print-Loop in C++ with cling and jupyter notebook / tutorial and advices
 
 ## About cling
 
@@ -16,7 +16,7 @@ Read the docs [here](https://xeus-cling.readthedocs.io/en/latest/).
 
 ## Advices and Gotchas
 
-The cling and xeus docs are good, but some informations are missing : see the page ["Advices and Gotchas"](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Advices_And_Gotchas.ipynb) for more details.
+The cling and xeus docs are good, but some informations are missing : see the page ["Advices and Gotchas when using cling and jupyter"](https://nbviewer.jupyter.org/github/pthom/Cling_Repl_Demo/blob/master/examples/notebooks/Advices_And_Gotchas.ipynb) for more details.
 
 
 ----------------
@@ -37,7 +37,7 @@ If you do not know jupyter notebook, take some time to familiarize yourself with
 * [Try in online on the official site](http://jupyter.org/try)
 * [Quick introduction to Jupyter Notebook](https://www.youtube.com/watch?v=jZ952vChhuI) (youtube video, 7')
 
-### A session of C++ with opencv
+### A session of REPL / C++ with opencv
 
 This demo shows how to load a library (opencv), and how to display images inside jupyter notebook.
 
@@ -46,9 +46,10 @@ Demo links:
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2Fopencv_example.ipynb" target="_blank">Online / runnable REPL</a>  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * [From you local clone of this repo](http://localhost:8888/tree/examples/notebooks/opencv_example.ipynb) (if you launched jupyter notebook on your computer or on the [docker container](Docker_xeus/Readme.md))
 
-### A session of C++ functional programming
+### A session of C++ showing functional programming with REPL
 
-This demo shows an example of a session functional programming in C++ using of A REPL (since a REPL is very adapted to functional programming).
+This demo shows an example of a session functional programming in C++ using a Read-Eval-Print-Loop (REPL).
+This mode of development is very adapted to functional programming.
 
 Below is an example, using [FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus) (a functional programming library for C++).
 FunctionalPlus provides an [API search engine](http://www.editgym.com/fplus-api-search/), similar to haskell's [hoogle](https://www.haskell.org/hoogle/).
