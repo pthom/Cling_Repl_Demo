@@ -1,3 +1,6 @@
 [submodule "external/FunctionalPlus"]
 	path = external/FunctionalPlus
 	url = https://github.com/Dobiasd/FunctionalPlus.git
+[submodule "notebooks/reveal.js"]
+	path = notebooks/reveal.js
+	url = https://github.com/hakimel/reveal.js.git
