@@ -5,11 +5,22 @@ import subprocess
 import jupyter
 import nbformat
 
-os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
-NOTEBOOKS_DIR = THIS_DIR + "/../../examples/notebooks"
-HTML_OUTPUT_DIR = NOTEBOOKS_DIR + "/html"
+MAIN_DIR = os.path.realpath(THIS_DIR + "/../..")
+NOTEBOOKS_DIR = MAIN_DIR + "/notebooks"
+MARKDOWN_DIR = MAIN_DIR + "/markdown"
+HTML_OUTPUT_DIR = MAIN_DIR + "/html_output"
+
+def mkdirp(directory):
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+
+def filename_to_output_dir(filename: str):
+  src_dir = os.path.dirname(os.path.realpath(filename))
+  dst_dir = "/sources_docker/" + "html_output" + src_dir.replace("/sources_docker", "")
+  mkdirp(dst_dir)
+  return dst_dir
 
 
 def file_with_extension(extension:str, directory:str, add_directory:bool = True):
@@ -25,25 +36,28 @@ def file_with_extension(extension:str, directory:str, add_directory:bool = True)
 def find_notebooks():
   return file_with_extension(".ipynb", NOTEBOOKS_DIR)
 
-def find_md():
-  result = file_with_extension(".md", NOTEBOOKS_DIR) + file_with_extension(".md", NOTEBOOKS_DIR + "/help")
+def find_all_markdowns():
+  result = file_with_extension(".md", MARKDOWN_DIR)
   return result
 
 
 def make_reveal_js_slideshow(notebook_file):
+  output_dir = filename_to_output_dir(notebook_file)
+  print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
     --output-dir={}
     --reveal-prefix=reveal.js \
     --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True
    """
-  cmd = base_cmd.format(notebook_file, HTML_OUTPUT_DIR)
+  cmd = base_cmd.format(notebook_file, output_dir)
   subprocess.run(cmd, shell=True, check=True)
 
 def make_html_preview(notebook_file):
+  output_dir = filename_to_output_dir(notebook_file)
   base_cmd = """jupyter nbconvert --to html {} \
     --output-dir={}
   """
-  cmd = base_cmd.format(notebook_file, HTML_OUTPUT_DIR)
+  cmd = base_cmd.format(notebook_file, output_dir)
   subprocess.run(cmd, shell=True, check=True)
 
 
@@ -71,11 +85,12 @@ def make_one_markdown_preview(notebook_file):
 
 
 def make_all_md_previews():
-  for f in find_md():
+  for f in find_all_markdowns():
     print("Making Markdown previews for {}".format(f))
     make_one_markdown_preview(f)
 
 
 if __name__ == "__main__":
-  # make_all_slideshows()
+  os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
+  make_all_slideshows()
   make_all_md_previews()
