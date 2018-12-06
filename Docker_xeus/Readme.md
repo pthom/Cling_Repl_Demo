@@ -1,5 +1,8 @@
 
-# Docker container in order to test cling
+# Docker container in order to run these demos
+
+The docker provided here will install `cling`, `miniconda`, `jupyter`, `xeus cling` , `opencv`; and it will configure
+jupyter notebook so that you can access it from your host computer.
 
 ## Create the container image
 ````bash
