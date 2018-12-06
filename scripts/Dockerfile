@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
+RUN apt-get update
 
 ARG install_scripts=/install_scripts
+
 ADD install_scripts/install_base.sh $install_scripts/install_base.sh
 RUN $install_scripts/install_base.sh
 
@@ -13,7 +15,12 @@ RUN $install_scripts/conda_xeus_cling.sh
 ADD install_scripts/conda_opencv.sh $install_scripts/conda_opencv.sh
 RUN $install_scripts/conda_opencv.sh
 
-# symlink /srv/conda required for path compatibility with mybinder.org
-RUN mkdir -p /src && ln -s /root/miniconda3 /srv/conda
+ADD install_scripts/customize_env.sh $install_scripts/customize_env.sh
+RUN $install_scripts/customize_env.sh
+
+ADD install_scripts/create_notebook_launcher.sh $install_scripts/create_notebook_launcher.sh
+RUN $install_scripts/create_notebook_launcher.sh
+
+RUN /srv/conda/bin/conda install -y -c conda-forge rise
 
 WORKDIR /sources_docker
