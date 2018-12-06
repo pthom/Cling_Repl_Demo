@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Readme</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Shell_Functional_REPL.md</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,48 +11775,121 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to-navigate-in-these-documents">How to navigate in these documents<a class="anchor-link" href="#How-to-navigate-in-these-documents">&#182;</a></h1><p><em>if you are reading this inside jupyter notebook</em></p>
-<ul>
-<li>Click on the "Run" button at the top in order to run each cell (or type "Shift + Enter" in order to run it, and go to the next cell)</li>
-<li>For a better undertsanding, it is better to clear the outputs below: click on the "Kernel" menu, and select "Restart &amp; Clear Output"</li>
-</ul>
-<p><em>If you are viewing a slideshow</em></p>
-<ul>
-<li>navigate forward using the space bar</li>
-<li>also use the arrows in the bottom right corner</li>
-</ul>
+<h1 id="Example-of-an-interactive-shell-session-with-cling">Example of an interactive shell session with cling<a class="anchor-link" href="#Example-of-an-interactive-shell-session-with-cling">&#182;</a></h1><p>Launch <code>cling</code> with C++14 support (required by fplus).</p>
+<div class="highlight"><pre><span></span>cling --std<span class="o">=</span>c++14
+</pre></div>
+<p>Then, enter these command line by line in the cling interpreter:</p>
+<div class="highlight"><pre><span></span><span class="c1">// If you are using this on your machine, enter this</span>
+<span class="cp">#pragma cling add_include_path(&quot;path/to/this/repo/external/FunctionalPlus/include</span><span class="cpf">&quot;)</span><span class="cp"></span>
+<span class="c1">// If you are using this on the provided Docker container, enter this</span>
+<span class="cp">#pragma cling add_include_path(&quot;/sources_docker/external/FunctionalPlus/include</span><span class="cpf">&quot;)</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fplus/fplus.hpp&gt;</span><span class="cp"></span>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Links-to-other-documents">Links to other documents<a class="anchor-link" href="#Links-to-other-documents">&#182;</a></h1><h3 id="A-session-of-REPL-/-C++-with-opencv-(notebook)">A session of REPL / C++ with opencv (notebook)<a class="anchor-link" href="#A-session-of-REPL-/-C++-with-opencv-(notebook)">&#182;</a></h3><ul>
-<li><a href="/notebooks/opencv_example.ipynb" target="_blank">open notebook</a>
-(right-click and select "open in new tab")</li>
-<li><a href="opencv_example.slides.html" target="_blank">slideshow</a>
-(right-click and select "open in new tab")</li>
-<li><a href="opencv_example.html">static page</a></li>
-</ul>
-<h3 id="A-session-of-C++-showing-functional-programming-with-REPL-(notebook)">A session of C++ showing functional programming with REPL (notebook)<a class="anchor-link" href="#A-session-of-C++-showing-functional-programming-with-REPL-(notebook)">&#182;</a></h3><ul>
-<li><a href="/notebooks/Functional_REPL.ipynb" target="_blank">open notebook</a>
-(right-click and select "open in new tab")</li>
-<li><a href="Functional_REPL.slides.html" target="_blank">slideshow</a>
-(right-click and select "open in new tab")</li>
-<li><a href="Functional_REPL.html">static page</a></li>
-</ul>
-<h3 id="Using-cling-on-the-console-(shell)">Using cling on the console (shell)<a class="anchor-link" href="#Using-cling-on-the-console-(shell)">&#182;</a></h3><ul>
-<li><a href="Shell_Functional_REPL.md.html">Interactive C++ REPL session from the console</a></li>
-</ul>
-<h3 id="Documents">Documents<a class="anchor-link" href="#Documents">&#182;</a></h3><ul>
-<li><a href="Advices_And_Gotchas.html">Advices and Gotchas when using cling and jupyter</a></li>
-<li><a href="https://github.com/pthom/Cling_Repl_Demo/blob/master/Readme.md">Main page</a> (web page on github)</li>
-</ul>
-<h1 id="How-to-install-these-demos-on-a-docker-container">How to install these demos on a docker container<a class="anchor-link" href="#How-to-install-these-demos-on-a-docker-container">&#182;</a></h1><p>See <a href="https://github.com/pthom/Cling_Repl_Demo/tree/master/scripts/Docker_Readme.md">https://github.com/pthom/Cling_Repl_Demo/tree/master/scripts/Docker_Readme.md</a></p>
-<hr>
-<p><em>You can close this window, as it was opened in a different browser window</em></p>
+<span class="c1">// If you do not end your line with a &quot;;&quot;, cling will output the result</span>
+<span class="c1">// of the last computation</span>
+<span class="n">fplus</span><span class="o">::</span><span class="n">read_text_file</span><span class="p">(</span><span class="s">&quot;data/if.txt&quot;</span><span class="p">)</span> <span class="c1">// no &quot;;&quot;</span>
+<span class="c1">// Oops:</span>
+<span class="c1">// --&gt; input_line_8:1:76: error: no template named &#39;basic_string&#39;; did you mean &#39;std::basic_string&#39;?</span>
+<span class="c1">//    extern &quot;C&quot; void __cling_Destruct_0x7fee164382c0(void* obj){((std::function&lt;basic_string&lt;char&gt; ()&gt;*)obj)-&gt;~function();}</span>
+<span class="c1">//</span>
+<span class="c1">// There is an error inside cling: it require to add &quot;using namespace std;&quot;</span>
+
+<span class="c1">// Let add it and try again</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">fplus</span><span class="o">::</span><span class="n">read_text_file</span><span class="p">(</span><span class="s">&quot;data/if.txt&quot;</span><span class="p">)</span> <span class="c1">// no &quot;;&quot;</span>
+<span class="c1">//-&gt; (std::function&lt;std::string ()&gt;) @0x8ed4050</span>
+
+<span class="c1">// Ha, ha ! fplus::read_text_file did not return a string !</span>
+<span class="c1">// It would have taken me quite a while to figure this out</span>
+<span class="c1">// during a normal C++ coding session. Here, I can avoid the error immediately .</span>
+<span class="c1">//</span>
+<span class="c1">// The reason for this is that fplus is a functional library,</span>
+<span class="c1">// so that fplus::read_text_file(filename) does not perform the side effect :</span>
+<span class="c1">// instead it returns a function which you need to invoke</span>
+<span class="c1">// in order to perform the side effect.</span>
+<span class="k">auto</span> <span class="n">poem</span> <span class="o">=</span> <span class="n">fplus</span><span class="o">::</span><span class="n">read_text_file</span><span class="p">(</span><span class="s">&quot;data/if.txt&quot;</span><span class="p">)();</span>
+
+<span class="n">poem</span>
+<span class="c1">// -&gt; (std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &amp;)</span>
+<span class="c1">//&quot;If you can keep your head when all about you</span>
+<span class="c1">// Are losing theirs and blaming it on you,</span>
+<span class="c1">//If you can trust yourself when all men doubt you,</span>
+<span class="c1">//...</span>
+
+
+<span class="c1">// Let&#39;s try to split some lines</span>
+<span class="k">const</span> <span class="k">auto</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">fplus</span><span class="o">::</span><span class="n">split_lines</span><span class="p">(</span><span class="n">poem</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="c1">// input_line_5:2:21: error: no matching function for call to &#39;split_lines&#39;</span>
+<span class="c1">//  const auto lines = fplus::split_lines(input, false);</span>
+<span class="c1">//                     ^~~~~~~~~~~~~~~~~~</span>
+<span class="c1">// fplus_include/fplus/string_tools.hpp:74:14: note: candidate function not viable:</span>
+<span class="c1">// no known conversion from &#39;std::string&#39; (aka &#39;basic_string&lt;char, char_traits&lt;char&gt;,</span>
+<span class="c1">// allocator&lt;char&gt; &gt;&#39;) to &#39;bool&#39; for 1st argument</span>
+<span class="c1">// ContainerOut split_lines(bool allowEmpty, const String&amp; str)</span>
+
+<span class="c1">// ooops, I was wrong in the argument order; but I got an immediate feedback</span>
+<span class="c1">// (no need to wait for the compilation)</span>
+<span class="c1">// Let&#39;s correct this:</span>
+<span class="k">const</span> <span class="k">auto</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">fplus</span><span class="o">::</span><span class="n">split_lines</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span> <span class="n">poem</span><span class="p">);</span>
+
+<span class="c1">// Let&#39;s see those lines:</span>
+<span class="n">lines</span>
+<span class="c1">// (std::vector&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;,</span>
+<span class="c1">//std::allocator&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; &amp;)</span>
+<span class="c1">//{ &quot;If you can keep your head when all about you&quot;, &quot; Are losing theirs and blaming it on you,&quot;,</span>
+<span class="c1">// etc...</span>
+
+
+<span class="c1">// Note: inside cling, *always* put the function body opening brace</span>
+<span class="c1">// at the end of the declaration line !</span>
+<span class="c1">// Otherwise, you might get weird errors messages</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">capitalize_first_letter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fplus</span><span class="o">::</span><span class="n">to_lower_case</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+    <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Let&#39;s continue :</span>
+<span class="c1">// apply_by_words is a higher order function that will</span>
+<span class="c1">// transform a function f into another function</span>
+<span class="c1">// that will appply f word by word</span>
+<span class="k">auto</span> <span class="n">apply_by_words</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">compose</span><span class="p">(</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">split</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">f</span><span class="p">),</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">join</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">))</span>
+    <span class="p">);</span>
+ <span class="p">};</span>
+
+<span class="c1">// Now let&#39;s instantiate apply_by_words with capitalize_first_letter</span>
+<span class="k">auto</span> <span class="n">cap_words</span> <span class="o">=</span> <span class="n">apply_by_words</span><span class="p">(</span><span class="n">capitalize_first_letter</span><span class="p">);</span>
+
+<span class="c1">// And let&#39;s try it</span>
+<span class="n">cap_words</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1">// It works !</span>
+<span class="c1">// -&gt; (std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</span>
+<span class="c1">// &quot;If You Can Keep Your Head When All About You&quot;</span>
+
+
+<span class="c1">// Let&#39;s continue</span>
+<span class="k">auto</span> <span class="n">apply_by_lines</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">compose</span><span class="p">(</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">split_lines</span><span class="p">(</span><span class="nb">false</span><span class="p">),</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">f</span><span class="p">),</span>
+        <span class="n">fplus</span><span class="o">::</span><span class="n">fwd</span><span class="o">::</span><span class="n">join</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
+    <span class="p">);</span>
+ <span class="p">};</span>
+
+<span class="k">auto</span> <span class="n">cap_text</span> <span class="o">=</span> <span class="n">apply_by_lines</span><span class="p">(</span><span class="n">cap_words</span><span class="p">);</span>
+
+<span class="c1">// And now let&#39;s apply this to the complete poem</span>
+<span class="n">cap_text</span><span class="p">(</span><span class="n">poem</span><span class="p">)</span>
+<span class="c1">// -&gt; (std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</span>
+<span class="c1">// &quot;If You Can Keep Your Head When All About You</span>
+<span class="c1">// Are Losing Theirs And Blaming It On You</span>
+<span class="c1">// If You Can Trust Yourself When All Men Doubt You</span>
+<span class="c1">// ...</span>
+</pre></div>
 
 </div>
 </div>
