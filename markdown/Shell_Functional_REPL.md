@@ -1,5 +1,7 @@
 # Example of an interactive shell session with cling
 
+This example, uses [FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus) (a functional programming library for C++).
+
 Launch `cling` with C++14 support (required by fplus).
 
 ````bash
