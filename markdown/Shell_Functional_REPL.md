@@ -19,7 +19,7 @@ Then, enter these command line by line in the cling interpreter:
 
 // If you do not end your line with a ";", cling will output the result
 // of the last computation
-fplus::read_text_file("data/if.txt") // no ";"
+fplus::read_text_file("notebooks/data/if.txt") // no ";"
 // Oops:
 // --> input_line_8:1:76: error: no template named 'basic_string'; did you mean 'std::basic_string'?
 //    extern "C" void __cling_Destruct_0x7fee164382c0(void* obj){((std::function<basic_string<char> ()>*)obj)->~function();}
@@ -28,7 +28,7 @@ fplus::read_text_file("data/if.txt") // no ";"
 
 // Let add it and try again
 using namespace std;
-fplus::read_text_file("data/if.txt") // no ";"
+fplus::read_text_file("notebooks/data/if.txt") // no ";"
 //-> (std::function<std::string ()>) @0x8ed4050
 
 // Ha, ha ! fplus::read_text_file did not return a string !
@@ -39,7 +39,7 @@ fplus::read_text_file("data/if.txt") // no ";"
 // so that fplus::read_text_file(filename) does not perform the side effect :
 // instead it returns a function which you need to invoke
 // in order to perform the side effect.
-auto poem = fplus::read_text_file("data/if.txt")();
+auto poem = fplus::read_text_file("notebooks/data/if.txt")();
 
 poem
 // -> (std::basic_string<char, std::char_traits<char>, std::allocator<char> > &)

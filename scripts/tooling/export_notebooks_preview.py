@@ -28,6 +28,7 @@ def filename_to_output_dir(filename: str):
 def file_with_extension(extension:str, directory:str, add_directory:bool = True):
   all_files = os.listdir(directory)
   files = [ f for f in all_files if f.endswith(extension) ]
+  files = sorted(files)
   if add_directory:
     result = [ "{}/{}".format(directory, f) for f in files ]
   else:
@@ -82,6 +83,7 @@ def write_markdown_as_notebook(markdown_code: str, out_ipynb_filename):
 
 
 def make_one_markdown_preview(notebook_file):
+  print("make_one_markdown_preview: " + notebook_file)
   with open(notebook_file) as f:
     markdown_code = f.read()
   tmp_notebook = notebook_file + ".ipynb"
@@ -96,10 +98,13 @@ def make_all_md_previews():
     make_one_markdown_preview(f)
 
 
-def copy_reveal_js():
+def copy_utilities():
   # copy reveal.js
-  print("copy_reveal_js")
+  print("copy reveal.js")
   cmd = "cp -a {}/reveal.js {}/notebooks/".format(NOTEBOOKS_DIR, HTML_OUTPUT_DIR)
+  subprocess.run(cmd, shell=True, check=True)
+  print("copy images")
+  cmd = "cp -a {}/images {}/markdown/".format(MARKDOWN_DIR, HTML_OUTPUT_DIR)
   subprocess.run(cmd, shell=True, check=True)
 
 def extract_notebook_infos(notebook_file: str):
@@ -117,7 +122,7 @@ def make_one_notebook_links(notebook_file):
   title, abstract = extract_notebook_infos(notebook_file)
   base_filename = os.path.basename(notebook_file).replace(".ipynb", "")
   md_template = """
-## {TITLE}
+### {TITLE}
 {ABSTRACT}
 Choose between 4 ways to view this document:
 * <a href="../../notebooks/{FILENAME}.html" target="_blank">Static page</a>
@@ -141,14 +146,14 @@ def make_all_notebook_links():
   for notebook_file in notebooks:
     md_code = make_one_notebook_links(notebook_file)
     all_code = all_code + md_code
-  dst_file = MARKDOWN_DIR + "/generated/all_notebooks.md"
+  dst_file = MARKDOWN_DIR + "/_gen.all_notebooks.md"
   with open(dst_file, "w") as f:
     f.write(all_code)
 
 
 def make_md_index():
   md_src_file = MARKDOWN_DIR + "/index.template.md"
-  md_dst_file = MARKDOWN_DIR + "/generated/1.index.md"
+  md_dst_file = MARKDOWN_DIR + "/_gen.index.md"
   with open(md_src_file, "r") as f:
     final_content = f.read()
   lines = final_content.split("\n")
@@ -173,4 +178,4 @@ if __name__ == "__main__":
   make_md_index()
   make_all_slideshows()
   make_all_md_previews()
-  copy_reveal_js()
+  copy_utilities()

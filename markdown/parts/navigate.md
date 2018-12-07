@@ -1,4 +1,4 @@
-# How to navigate in these documents
+### How to navigate in these notebooks
 
 *if you are reading this inside jupyter notebook*
 * Click on the "Run" button at the top in order to run each cell (or type "Shift + Enter" in order to run it, and go to the next cell)
