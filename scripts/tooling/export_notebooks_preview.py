@@ -127,8 +127,8 @@ def make_one_notebook_links(notebook_file):
 ### {TITLE}
 {ABSTRACT}
 Choose between 4 ways to view this document:
-* <a href="../../notebooks/{FILENAME}.html" target="_blank">Static page</a>
-* <a href="../../notebooks/{FILENAME}.slides.html" target="_blank">As a slideshow</a>
+* <a href="../notebooks/{FILENAME}.html" target="_blank">Static page</a>
+* <a href="../notebooks/{FILENAME}.slides.html" target="_blank">As a slideshow</a>
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F{FILENAME}.ipynb"
   target="_blank">Interactive notebook online</a>
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
