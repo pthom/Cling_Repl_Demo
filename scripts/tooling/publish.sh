@@ -1,4 +1,4 @@
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+DIR="$(dirname "$(greadlink -f "$0")")" # readlink on linux (brew install coreutils on mac)
 
 MAINDIR=$DIR/../..
 SERVER=212.83.137.58
