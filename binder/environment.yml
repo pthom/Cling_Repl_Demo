@@ -6,3 +6,4 @@ dependencies:
   - jupyter
   - opencv
   - xeus-cling
+  - rise

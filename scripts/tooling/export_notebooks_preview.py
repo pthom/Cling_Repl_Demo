@@ -5,7 +5,7 @@ import subprocess
 import jupyter
 import nbformat
 import json
-
+import shutil
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 MAIN_DIR = os.path.realpath(THIS_DIR + "/../..")
@@ -25,7 +25,7 @@ def filename_to_output_dir(filename: str):
   return dst_dir
 
 
-def file_with_extension(extension:str, directory:str, add_directory:bool = True):
+def list_files_with_extension(extension:str, directory:str, add_directory:bool = True):
   all_files = os.listdir(directory)
   files = [ f for f in all_files if f.endswith(extension) ]
   files = sorted(files)
@@ -37,7 +37,7 @@ def file_with_extension(extension:str, directory:str, add_directory:bool = True)
 
 
 def find_notebooks():
-  return file_with_extension(".ipynb", NOTEBOOKS_DIR)
+  return list_files_with_extension(".ipynb", NOTEBOOKS_DIR)
 
 def find_all_markdowns():
   result = []
@@ -150,6 +150,12 @@ def make_all_notebook_links():
   with open(dst_file, "w") as f:
     f.write(all_code)
 
+def copy_cpp_examples():
+  for cpp_file in list_files_with_extension(".cpp", NOTEBOOKS_DIR):
+    basename = os.path.basename(cpp_file)
+    out_dir = filename_to_output_dir(cpp_file)
+    shutil.copy(cpp_file, out_dir + "/" + basename)
+
 
 def make_md_index():
   md_src_file = MARKDOWN_DIR + "/index.template.md"
@@ -179,3 +185,4 @@ if __name__ == "__main__":
   make_all_slideshows()
   make_all_md_previews()
   copy_utilities()
+  copy_cpp_examples()

@@ -66,7 +66,7 @@ Choose between 4 ways to view this document:
 
 ### A REPL session of C++ functional programming, using fplus
 
-A Read-Eval-Print-Loop makes functional programing very proficient. This notebook demonstrates it.
+A Read-Eval-Print-Loop makes functional programing very proficient. This notebook demonstrates it. If you are new to functional programming, it is recommended to view it as a slideshow.
 
 Choose between 4 ways to view this document:
 * <a href="../../notebooks/2_Functional_REPL.html" target="_blank">Static page</a>
@@ -90,15 +90,15 @@ Choose between 4 ways to view this document:
 
 # Installation : how to test these examples on your computer
 
-## Docker : quick test without modifying your machine
+### Docker : quick test without modifying your machine
 If you do not want to modify your machine, you can use the docker image provided inside this repo.
 
 Refer to [the docker instructions](part/docker.html).
 
-## Full installation on your machine
+### Full installation on your machine
 Refer to the instructions on the [xeus cling web page](https://github.com/QuantStack/xeus-cling)
 
-## I don't want to install anything!
+### I don't want to install anything!
 
 As mentioned before, these demos are [available online on mybinder.org](https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=examples%2Fnotebooks%2F).
 # About cling
