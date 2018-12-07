@@ -11,7 +11,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
 <table>
 <tr>
   <td>
-    <a href="images/shell_example.png" target="_blank">
+    <a href="Shell_Functional_REPL.md.html" target="_blank">
       <img src="images/shell_example.png" height="200" alt="REPL in the console" />
       C++ REPL in a console
     </a>
@@ -22,7 +22,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
     &nbsp;&nbsp;&nbsp;
   </td>
   <td>
-    <a href="images/opencv_example.png" target="_blank">
+    <a href="/notebooks/1_opencv_example.html" target="_blank">
       <img src="images/opencv_example.png" height="200" alt="REPL in the jupyter notebook" />
       C++ REPL inside jupyter notebook
     </a>
@@ -88,6 +88,18 @@ Choose between 4 ways to view this document:
   target="_blank">Interactive notebook online</a>
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+
+### ideo controls>
+
+  <source src="shell_cling_fplus.profile.mp4" type="video/mp4">
+
+Choose between 4 ways to view this document:
+* <a href="../notebooks/Untitled.html" target="_blank">Static page</a>
+* <a href="../notebooks/Untitled.slides.html" target="_blank">As a slideshow</a>
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2FUntitled.ipynb"
+  target="_blank">Interactive notebook online</a>
+  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
+* <a href="http://localhost:8888/notebooks/Untitled.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
 # Installation : how to test these examples on your computer
 

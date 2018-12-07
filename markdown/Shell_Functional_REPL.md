@@ -2,6 +2,9 @@
 
 This example, uses [FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus) (a functional programming library for C++).
 
+<video autoplay=true controls src="movies/shell_cling_fplus.mp4" type="video/mp4">
+</video>
+
 Launch `cling` with C++14 support (required by fplus).
 
 ````bash

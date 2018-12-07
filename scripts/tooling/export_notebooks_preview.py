@@ -101,12 +101,16 @@ def make_all_md_previews():
 def copy_utilities():
   # copy reveal.js
   print("copy reveal.js")
-  cmd = "cp -a {}/reveal.js {}/notebooks/".format(NOTEBOOKS_DIR, HTML_OUTPUT_DIR)
+  cmd = "cp -a notebooks/reveal.js html_output/notebooks/"
   subprocess.run(cmd, shell=True, check=True)
   print("copy images")
-  cmd = "cp -a {}/images {}/markdown/".format(MARKDOWN_DIR, HTML_OUTPUT_DIR)
+  cmd = "cp -a notebooks/data html_output/notebooks/"
   subprocess.run(cmd, shell=True, check=True)
-  cmd = "cp -a {}/data {}/notebooks/".format(NOTEBOOKS_DIR, HTML_OUTPUT_DIR)
+  cmd = "cp -a notebooks/data html_output/notebooks/"
+  subprocess.run(cmd, shell=True, check=True)
+  cmd = "cp -a markdown/images html_output/markdown/"
+  subprocess.run(cmd, shell=True, check=True)
+  cmd = "cp -a markdown/movies html_output/markdown/"
   subprocess.run(cmd, shell=True, check=True)
 
 def extract_notebook_infos(notebook_file: str):
