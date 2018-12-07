@@ -2,6 +2,7 @@
 ### A session of REPL / C++ with opencv
 
 Load, display and manipulate images with opencv. Demonstrates how to load an external library and display advanced items.
+
 Choose between 4 ways to view this document:
 * <a href="../../notebooks/1_opencv_example.html" target="_blank">Static page</a>
 * <a href="../../notebooks/1_opencv_example.slides.html" target="_blank">As a slideshow</a>

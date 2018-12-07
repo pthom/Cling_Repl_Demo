@@ -106,6 +106,8 @@ def copy_utilities():
   print("copy images")
   cmd = "cp -a {}/images {}/markdown/".format(MARKDOWN_DIR, HTML_OUTPUT_DIR)
   subprocess.run(cmd, shell=True, check=True)
+  cmd = "cp -a {}/data {}/notebooks/".format(NOTEBOOKS_DIR, HTML_OUTPUT_DIR)
+  subprocess.run(cmd, shell=True, check=True)
 
 def extract_notebook_infos(notebook_file: str):
   with open(notebook_file) as f:
