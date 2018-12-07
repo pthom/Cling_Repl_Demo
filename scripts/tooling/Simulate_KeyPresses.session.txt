@@ -1,0 +1,146 @@
+[cling]$ // We are inside cling, a complete C++ REPL interpreter
+[cling]$ // which was launched using `cling --std=c++14`
+
+[cling]$ // Let's modify the include path
+[cling]$ #pragma cling add_include_path("/sources_docker/external/FunctionalPlus/include")
+[cling]$ #include <fplus/fplus.hpp>
+
+[cling]$ // You can also load libraries if needed:
+[cling]$ // For example:
+[cling]$ // #pragma cling add_library_path("/path/to/lib/")
+[cling]$ // #pragma cling load("my_lib")
+
+[cling]$ // You can also load .cpp or .h files
+[cling]$ // For example:
+[cling]$ // #include("myfile.cpp");
+[cling]$ // or
+[cling]$ // .L myfile.cpp
+
+
+
+
+[cling]$ // Let's start using cling, with a demo that uses FunctionalPlus,
+[cling]$ // a C++ functional programming library.
+
+
+
+
+[cling]$ using namespace std;
+
+
+[cling]$ // If you do not end your line with a ";", cling will output the result
+[cling]$ fplus::read_text_file("notebooks/data/if.txt") // no ";"
+(std::function<std::string ()>) @0x7b3f5e0
+
+
+
+
+[cling]$ // fplus is a functional library: it returns a function which
+[cling]$ // you need to invoke in order to perform the side effect.
+
+[cling]$ auto poem = fplus::read_text_file("notebooks/data/if.txt")();
+[cling]$ poem
+(std::basic_string<char, std::char_traits<char>, std::allocator<char> > &) "If you can keep your head when all about you
+ Are losing theirs and blaming it on you,
+If you can trust yourself when all men doubt you,
+ But make allowance for their doubting too.
+If you can wait and not be tired by waiting,
+ Or being lied about, don't deal in lies,
+Or being hated, don't give way to hating,
+ And yet don't look too good, nor talk too wise:
+"
+
+
+
+
+[cling]$ // Let's try to split the lines
+
+[cling]$ const auto lines = fplus::split_lines(poem, false);
+input_line_29:2:21: error: no matching function for call to 'split_lines'
+ const auto lines = fplus::split_lines(poem, false);
+                    ^~~~~~~~~~~~~~~~~~
+/sources_docker/external/FunctionalPlus/include/fplus/string_tools.hpp:74:14: note: candidate function not viable: no known conversion from 'std::__cxx11::basic_string<char>' to 'bool' for 1st argument
+ContainerOut split_lines(bool allowEmpty, const String& str)
+             ^
+
+[cling]$ // ooops, the compiler helped me immediately, let's correct this
+[cling]$ const auto lines = fplus::split_lines(false, poem);
+[cling]$ lines
+(std::vector<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::basic_string<char, std::char_traits<char>, std::allocator<char> > > > &)
+{ "If you can keep your head when all about you", " Are losing theirs and blaming it on you,", "If you can trust yourself when all men doubt you,", " But make allowance for their doubting too.", "If you can wait and not be tired by waiting,", " Or being lied about, don't deal in lies,", "Or being hated, don't give way to hating,", " And yet don't look too good, nor talk too wise:" }
+[cling]$  // better!
+
+
+
+[cling]$ // Let try to apply a transformation (capitalize_first_letter)
+
+[cling]$ // Note: inside cling, *always* write "{" on the declaration line
+
+[cling]$ std::string capitalize_first_letter(const std::string & word) {
+[cling]$ ?       auto result = fplus::to_lower_case(word);
+[cling]$ ?       result[0] = toupper(result[0]);
+[cling]$ ?       return result;
+[cling]$ ?}
+
+[cling]$  capitalize_first_letter("hello")
+
+
+
+[cling]$ // Let's continue :
+[cling]$ // apply_by_words is a higher order function that will
+[cling]$ // transform a function f into another function
+[cling]$ // that will appply f word by word
+
+[cling]$ auto apply_by_words = [](auto f) {
+[cling]$ ?       return fplus::fwd::compose(
+[cling]$ ?              fplus::fwd::split(' ', false),
+[cling]$ ?              fplus::fwd::transform(f),
+[cling]$ ?              fplus::fwd::join(std::string(" "))
+[cling]$ ?          );
+[cling]$ ?};
+
+
+
+
+[cling]$ // Now let's instantiate apply_by_words with capitalize_first_letter
+[cling]$ auto cap_words = apply_by_words(capitalize_first_letter);
+
+
+[cling]$ // And let's try it
+[cling]$ cap_words(lines[0])
+(std::basic_string<char, std::char_traits<char>, std::allocator<char> >) "If You Can Keep Your Head When All About You"
+[cling]$ //     It works!
+
+
+
+
+[cling]$ // Let's continue on all the lines
+
+[cling]$ auto apply_by_lines = [](auto f) {
+[cling]$ ?       return fplus::fwd::compose(
+[cling]$ ?              fplus::fwd::split_lines(false),
+[cling]$ ?              fplus::fwd::transform(f),
+[cling]$ ?              fplus::fwd::join(std::string("\n"))
+[cling]$ ?          );
+[cling]$ ?};
+
+
+[cling]$ // And now let's apply this to the complete poem
+[cling]$ auto cap_text = apply_by_lines(cap_words);
+
+[cling]$ cap_text(poem)
+
+(std::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+"If You Can Keep Your Head When All About You
+Are Losing Theirs And Blaming It On You,
+If You Can Trust Yourself When All Men Doubt You,
+But Make Allowance For Their Doubting Too.
+If You Can Wait And Not Be Tired By Waiting,
+Or Being Lied About, Don't Deal In Lies,
+Or Being Hated, Don't Give Way To Hating,
+And Yet Don't Look Too Good, Nor Talk Too Wise:"
+
+
+
+[cling]$ .q
+[DOCKER]➜  /sources_docker >
