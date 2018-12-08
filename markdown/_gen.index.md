@@ -53,17 +53,17 @@ See an example of an interactive C++ session [here](Shell_Functional_REPL.md.htm
 * navigate forward using the space bar
 * also use the arrows in the bottom right corner
 
-### A session of REPL / C++ with opencv
+### Advices and Gotchas when using cling and jupyter
 
-Load, display and manipulate images with opencv. Demonstrates how to load an external library and display advanced items.
+The cling and xeus docs are good, but some informations are missing : this notebook adds more details.
 
 Choose between 4 ways to view this document:
-* <a href="../notebooks/1_opencv_example.html" target="_blank">Static page</a>
-* <a href="../notebooks/1_opencv_example.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F1_opencv_example.ipynb"
+* <a href="../notebooks/3_Advices_And_Gotchas.html" target="_blank">Static page</a>
+* <a href="../notebooks/3_Advices_And_Gotchas.slides.html" target="_blank">As a slideshow</a>
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F3_Advices_And_Gotchas.ipynb"
   target="_blank">Interactive notebook online</a>
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+* <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
 ### A REPL session of C++ functional programming, using fplus
 
@@ -77,17 +77,29 @@ Choose between 4 ways to view this document:
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * <a href="http://localhost:8888/notebooks/2_Functional_REPL.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
-### Advices and Gotchas when using cling and jupyter
+### A session of REPL / C++ with opencv
 
-The cling and xeus docs are good, but some informations are missing : this notebook adds more details.
+Load, display and manipulate images with opencv. Demonstrates how to load an external library and display advanced items.
 
 Choose between 4 ways to view this document:
-* <a href="../notebooks/3_Advices_And_Gotchas.html" target="_blank">Static page</a>
-* <a href="../notebooks/3_Advices_And_Gotchas.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F3_Advices_And_Gotchas.ipynb"
+* <a href="../notebooks/1_opencv_example.html" target="_blank">Static page</a>
+* <a href="../notebooks/1_opencv_example.slides.html" target="_blank">As a slideshow</a>
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F1_opencv_example.ipynb"
   target="_blank">Interactive notebook online</a>
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+* <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+
+### Display friendly type names
+
+Trying to solve the sad state of variables introspection at runtime: display a clean type, introspect lambda params and return types, etc.
+
+Choose between 4 ways to view this document:
+* <a href="../notebooks/typename.html" target="_blank">Static page</a>
+* <a href="../notebooks/typename.slides.html" target="_blank">As a slideshow</a>
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2Ftypename.ipynb"
+  target="_blank">Interactive notebook online</a>
+  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
+* <a href="http://localhost:8888/notebooks/typename.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
 # Installation : how to test these examples on your computer
 

@@ -14,6 +14,14 @@ MARKDOWN_DIR = MAIN_DIR + "/markdown"
 HTML_OUTPUT_DIR = MAIN_DIR + "/html_output"
 NOTEBOOK_LOCALHOST = "http://localhost:8888"
 
+IGNORED_FOLDERS = [".ipynb_checkpoints"]
+
+def is_ignored_folder(folder):
+  matches = [folder.endswith(ignored_folder) for ignored_folder in IGNORED_FOLDERS ]
+  has_one_match = any(matches)
+  return has_one_match
+
+
 def mkdirp(directory):
     if not os.path.isdir(directory):
         os.makedirs(directory)
@@ -25,7 +33,7 @@ def filename_to_output_dir(filename: str):
   return dst_dir
 
 
-def list_files_with_extension(extension:str, directory:str, add_directory:bool = True):
+def directory_files_with_extension(extension:str, directory:str, add_directory:bool = True):
   all_files = os.listdir(directory)
   files = [ f for f in all_files if f.endswith(extension) ]
   files = sorted(files)
@@ -36,16 +44,23 @@ def list_files_with_extension(extension:str, directory:str, add_directory:bool =
   return result
 
 
+def files_with_extension_recursive(directory: str, extension: str):
+  result = []
+  for current_dir, _, files in os.walk(directory):
+    if not is_ignored_folder(current_dir):
+      for file in files:
+        if file.endswith(extension):
+          result.append(current_dir + "/" + file)
+  return result
+
+
+
 def find_notebooks():
-  return list_files_with_extension(".ipynb", NOTEBOOKS_DIR)
+  return files_with_extension_recursive(NOTEBOOKS_DIR, ".ipynb")
+
 
 def find_all_markdowns():
-  result = []
-  for root, dirs, files in os.walk(MARKDOWN_DIR):
-    for file in files:
-      if file.endswith(".md"):
-        result.append(root + "/" + file)
-  return result
+  return files_with_extension_recursive(MARKDOWN_DIR, ".md")
 
 
 def make_reveal_js_slideshow(notebook_file):
@@ -53,7 +68,7 @@ def make_reveal_js_slideshow(notebook_file):
   print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
     --output-dir={} \
-    --reveal-prefix=reveal.js \
+    --reveal-prefix=/notebooks/reveal.js \
     --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True
    """
   cmd = base_cmd.format(notebook_file, output_dir)
@@ -157,7 +172,7 @@ def make_all_notebook_links():
     f.write(all_code)
 
 def copy_cpp_examples():
-  for cpp_file in list_files_with_extension(".cpp", NOTEBOOKS_DIR):
+  for cpp_file in directory_files_with_extension(".cpp", NOTEBOOKS_DIR):
     basename = os.path.basename(cpp_file)
     out_dir = filename_to_output_dir(cpp_file)
     shutil.copy(cpp_file, out_dir + "/" + basename)
