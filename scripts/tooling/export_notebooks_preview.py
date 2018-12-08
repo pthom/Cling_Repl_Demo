@@ -63,7 +63,7 @@ def find_all_markdowns():
   return files_with_extension_recursive(MARKDOWN_DIR, ".md")
 
 
-def make_reveal_js_slideshow(notebook_file):
+def make_notebook_slideshow(notebook_file):
   output_dir = filename_to_output_dir(notebook_file)
   print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
@@ -74,20 +74,26 @@ def make_reveal_js_slideshow(notebook_file):
   cmd = base_cmd.format(notebook_file, output_dir)
   subprocess.run(cmd, shell=True, check=True)
 
-def make_html_preview(notebook_file):
+
+def convert_notebook(notebook_file, export_format):
   output_dir = filename_to_output_dir(notebook_file)
-  base_cmd = """jupyter nbconvert --to html {} \
+  base_cmd = """jupyter nbconvert --to {} {} \
     --output-dir={}
   """
-  cmd = base_cmd.format(notebook_file, output_dir)
+  cmd = base_cmd.format(export_format, notebook_file, output_dir)
   subprocess.run(cmd, shell=True, check=True)
 
 
-def make_all_slideshows():
+def convert_notebook_to_html(notebook_file):
+  convert_notebook(notebook_file, "html")
+
+
+def make_all_notebook_previews():
   for f in find_notebooks():
     print("Making previews for {}".format(f))
-    make_reveal_js_slideshow(f)
-    make_html_preview(f)
+    make_notebook_slideshow(f)
+    convert_notebook_to_html(f)
+    convert_notebook(f, "markdown")
 
 
 def write_markdown_as_notebook(markdown_code: str, out_ipynb_filename):
@@ -103,7 +109,7 @@ def make_one_markdown_preview(notebook_file):
     markdown_code = f.read()
   tmp_notebook = notebook_file + ".ipynb"
   write_markdown_as_notebook(markdown_code, tmp_notebook)
-  make_html_preview(tmp_notebook)
+  convert_notebook_to_html(tmp_notebook)
   os.remove(tmp_notebook)
 
 
@@ -203,7 +209,7 @@ if __name__ == "__main__":
   mkdirp(HTML_OUTPUT_DIR)
   make_all_notebook_links()
   make_md_index()
-  make_all_slideshows()
+  make_all_notebook_previews()
   make_all_md_previews()
   copy_utilities()
   copy_cpp_examples()
