@@ -3,7 +3,7 @@
 ### Docker : quick test without modifying your machine
 If you do not want to modify your machine, you can use the docker image provided inside this repo.
 
-Refer to [the docker instructions](part/docker.html).
+Refer to [the docker instructions](parts/docker.md.html).
 
 ### Full installation on your machine
 Refer to the instructions on the [xeus cling web page](https://github.com/QuantStack/xeus-cling)

@@ -2,8 +2,20 @@
 
 This example, uses [FunctionalPlus](https://github.com/Dobiasd/FunctionalPlus) (a functional programming library for C++).
 
-<video autoplay=true controls src="movies/shell_cling_fplus.mp4" type="video/mp4">
+<video autoplay=true controls
+    src="movies/shell_cling_fplus.mp4" type="video/mp4"
+    playsinline
+    muted
+    autoplay=false
+    >
 </video>
+
+<i>
+    Video not working ? View it on
+    <a href="https://www.youtube.com/watch?v=L4vmfPyCpec" target="_blank">
+        YouTube
+    </a>
+</i>
 
 Launch `cling` with C++14 support (required by fplus).
 

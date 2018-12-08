@@ -89,24 +89,12 @@ Choose between 4 ways to view this document:
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
-### ideo controls>
-
-  <source src="shell_cling_fplus.profile.mp4" type="video/mp4">
-
-Choose between 4 ways to view this document:
-* <a href="../notebooks/Untitled.html" target="_blank">Static page</a>
-* <a href="../notebooks/Untitled.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2FUntitled.ipynb"
-  target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/Untitled.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
-
 # Installation : how to test these examples on your computer
 
 ### Docker : quick test without modifying your machine
 If you do not want to modify your machine, you can use the docker image provided inside this repo.
 
-Refer to [the docker instructions](part/docker.html).
+Refer to [the docker instructions](parts/docker.md.html).
 
 ### Full installation on your machine
 Refer to the instructions on the [xeus cling web page](https://github.com/QuantStack/xeus-cling)
