@@ -89,10 +89,9 @@ Choose between 4 ways to view this document:
   (Requires 1 minute to load : it is recommended to open this link in a separate tab)
 * <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
 
-### Display friendly type names
+### `type_name` a developper friendly `typeid` header only alternative
 
-Trying to solve the sad state of variables introspection at runtime: display a clean type, introspect lambda params and return types, etc.
-
+Display a **readable** type and content for variables and lambdas. 
 Choose between 4 ways to view this document:
 * <a href="../notebooks/typename.html" target="_blank">Static page</a>
 * <a href="../notebooks/typename.slides.html" target="_blank">As a slideshow</a>
