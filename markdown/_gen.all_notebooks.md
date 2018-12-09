@@ -38,6 +38,7 @@ Choose between 4 ways to view this document:
 ### `type_name` a developper friendly `typeid` header only alternative
 
 Display a **readable** type and content for variables and lambdas. 
+
 Choose between 4 ways to view this document:
 * <a href="../notebooks/typename.html" target="_blank">Static page</a>
 * <a href="../notebooks/typename.slides.html" target="_blank">As a slideshow</a>
