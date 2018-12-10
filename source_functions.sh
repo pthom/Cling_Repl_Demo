@@ -8,7 +8,7 @@ function zz_docker_export_notebooks_preview_deploy() {
     cp html_output/external/type_name/notebooks/typename/typename.md external/type_name/README.md
 }
 
-function zz_git_push() {
+function zz_tn_git_push() {
     cd external/type_name
     git push
     cd -
@@ -39,7 +39,7 @@ function zz_tn_manual_update_and_push() {
 
     zz_docker_export_notebooks_preview_deploy
     zz_tn_commit_manual $commit_msg
-    zz_git_push
+    zz_tn_git_push
 }
 
 function zz_html_output_server() {
@@ -47,5 +47,5 @@ function zz_html_output_server() {
 }
 
 function zz_docker_run_notebook() {
-    ./scripts/scripts/docker_run_notebook.sh.sh &
+    ./scripts/docker_run_notebook.sh
 }
