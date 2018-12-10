@@ -11,7 +11,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
 <table>
 <tr>
   <td>
-    <a href="Shell_Functional_REPL.md.html" target="_blank">
+    <a href="Shell_Functional_REPL.md.html">
       <img src="images/shell_example.png" height="200" alt="REPL in the console" />
       C++ REPL in a console
     </a>
@@ -22,7 +22,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
     &nbsp;&nbsp;&nbsp;
   </td>
   <td>
-    <a href="/notebooks/1_opencv_example.html" target="_blank">
+    <a href="/notebooks/1_opencv_example.html">
       <img src="images/opencv_example.png" height="200" alt="REPL in the jupyter notebook" />
       C++ REPL inside jupyter notebook
     </a>

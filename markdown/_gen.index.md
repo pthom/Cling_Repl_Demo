@@ -11,7 +11,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
 <table>
 <tr>
   <td>
-    <a href="Shell_Functional_REPL.md.html" target="_blank">
+    <a href="Shell_Functional_REPL.md.html">
       <img src="images/shell_example.png" height="200" alt="REPL in the console" />
       C++ REPL in a console
     </a>
@@ -22,7 +22,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
     &nbsp;&nbsp;&nbsp;
   </td>
   <td>
-    <a href="/notebooks/1_opencv_example.html" target="_blank">
+    <a href="/notebooks/1_opencv_example.html">
       <img src="images/opencv_example.png" height="200" alt="REPL in the jupyter notebook" />
       C++ REPL inside jupyter notebook
     </a>
@@ -53,53 +53,44 @@ See an example of an interactive C++ session [here](Shell_Functional_REPL.md.htm
 * navigate forward using the space bar
 * also use the arrows in the bottom right corner
 
-### Advices and Gotchas when using cling and jupyter
+### A session of REPL / C++ with opencv
 
-The cling and xeus docs are good, but some informations are missing : this notebook adds more details.
+Load, display and manipulate images with opencv. Demonstrates how to load an external library and display advanced items.
 
 Choose between 4 ways to view this document:
-* <a href="../notebooks/3_Advices_And_Gotchas.html" target="_blank">Static page</a>
-* <a href="../notebooks/3_Advices_And_Gotchas.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F3_Advices_And_Gotchas.ipynb"
+* <a href="../notebooks/1_opencv_example.html">Static page</a>
+* <a href="../notebooks/1_opencv_example.slides.html" target="_blank"> slideshow</a>(opens in a new window)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F1_opencv_example.ipynb"
   target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+  (opens in a new window, may require 1 minute to load. Be patient!)
+* <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">
+  Open notebook from you local clone of this repo</a>(Opens in a new window)
 
 ### A REPL session of C++ functional programming, using fplus
 
 A Read-Eval-Print-Loop makes functional programing very proficient. This notebook demonstrates it. If you are new to functional programming, it is recommended to view it as a slideshow.
 
 Choose between 4 ways to view this document:
-* <a href="../notebooks/2_Functional_REPL.html" target="_blank">Static page</a>
-* <a href="../notebooks/2_Functional_REPL.slides.html" target="_blank">As a slideshow</a>
+* <a href="../notebooks/2_Functional_REPL.html">Static page</a>
+* <a href="../notebooks/2_Functional_REPL.slides.html" target="_blank"> slideshow</a>(opens in a new window)
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F2_Functional_REPL.ipynb"
   target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/2_Functional_REPL.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+  (opens in a new window, may require 1 minute to load. Be patient!)
+* <a href="http://localhost:8888/notebooks/2_Functional_REPL.ipynb" target="_blank">
+  Open notebook from you local clone of this repo</a>(Opens in a new window)
 
-### A session of REPL / C++ with opencv
+### Advices and Gotchas when using cling and jupyter
 
-Load, display and manipulate images with opencv. Demonstrates how to load an external library and display advanced items.
-
-Choose between 4 ways to view this document:
-* <a href="../notebooks/1_opencv_example.html" target="_blank">Static page</a>
-* <a href="../notebooks/1_opencv_example.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F1_opencv_example.ipynb"
-  target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
-
-### `type_name` a developper friendly `typeid` header only alternative
-
-Display **readable** types and contents for C++ variables and lambdas. 
+The cling and xeus docs are good, but some informations are missing : this notebook adds more details.
 
 Choose between 4 ways to view this document:
-* <a href="../notebooks/typename.html" target="_blank">Static page</a>
-* <a href="../notebooks/typename.slides.html" target="_blank">As a slideshow</a>
-* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2Ftypename.ipynb"
+* <a href="../notebooks/3_Advices_And_Gotchas.html">Static page</a>
+* <a href="../notebooks/3_Advices_And_Gotchas.slides.html" target="_blank"> slideshow</a>(opens in a new window)
+* <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F3_Advices_And_Gotchas.ipynb"
   target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="http://localhost:8888/notebooks/typename.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+  (opens in a new window, may require 1 minute to load. Be patient!)
+* <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">
+  Open notebook from you local clone of this repo</a>(Opens in a new window)
 
 # Installation : how to test these examples on your computer
 

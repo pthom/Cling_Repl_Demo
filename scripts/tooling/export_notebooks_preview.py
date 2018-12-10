@@ -33,7 +33,7 @@ def filename_to_output_dir(filename: str):
   return dst_dir
 
 
-def directory_files_with_extension(extension:str, directory:str, add_directory:bool = True):
+def directory_files_with_extension(directory:str, extension:str, add_directory:bool = True):
   all_files = os.listdir(directory)
   files = [ f for f in all_files if f.endswith(extension) ]
   files = sorted(files)
@@ -55,8 +55,11 @@ def files_with_extension_recursive(directory: str, extension: str):
 
 
 
-def find_notebooks():
-  return files_with_extension_recursive(NOTEBOOKS_DIR, ".ipynb")
+def find_notebooks(recurse: bool):
+  if (recurse):
+    return files_with_extension_recursive(NOTEBOOKS_DIR, ".ipynb")
+  else:
+    return directory_files_with_extension(NOTEBOOKS_DIR, ".ipynb")
 
 
 def find_all_markdowns():
@@ -89,7 +92,7 @@ def convert_notebook_to_html(notebook_file):
 
 
 def make_all_notebook_previews():
-  for f in find_notebooks():
+  for f in find_notebooks(True):
     print("Making previews for {}".format(f))
     make_notebook_slideshow(f)
     convert_notebook_to_html(f)
@@ -152,12 +155,13 @@ def make_one_notebook_links(notebook_file):
 ### {TITLE}
 {ABSTRACT}
 Choose between 4 ways to view this document:
-* <a href="../notebooks/{FILENAME}.html" target="_blank">Static page</a>
-* <a href="../notebooks/{FILENAME}.slides.html" target="_blank">As a slideshow</a>
+* <a href="../notebooks/{FILENAME}.html">Static page</a>
+* <a href="../notebooks/{FILENAME}.slides.html" target="_blank"> slideshow</a>(opens in a new window)
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F{FILENAME}.ipynb"
   target="_blank">Interactive notebook online</a>
-  (Requires 1 minute to load : it is recommended to open this link in a separate tab)
-* <a href="{NOTEBOOK_LOCALHOST}/notebooks/{FILENAME}.ipynb" target="_blank">Open notebook from you local clone of this repo</a>
+  (opens in a new window, may require 1 minute to load. Be patient!)
+* <a href="{NOTEBOOK_LOCALHOST}/notebooks/{FILENAME}.ipynb" target="_blank">
+  Open notebook from you local clone of this repo</a>(Opens in a new window)
 """
   md_code = md_template
   md_code = md_code.replace("{NOTEBOOK_LOCALHOST}", NOTEBOOK_LOCALHOST)
@@ -168,7 +172,7 @@ Choose between 4 ways to view this document:
 
 
 def make_all_notebook_links():
-  notebooks = find_notebooks()
+  notebooks = find_notebooks(False)
   all_code = ""
   for notebook_file in notebooks:
     md_code = make_one_notebook_links(notebook_file)
@@ -178,7 +182,7 @@ def make_all_notebook_links():
     f.write(all_code)
 
 def copy_cpp_examples():
-  for cpp_file in directory_files_with_extension(".cpp", NOTEBOOKS_DIR):
+  for cpp_file in directory_files_with_extension(NOTEBOOKS_DIR, ".cpp"):
     basename = os.path.basename(cpp_file)
     out_dir = filename_to_output_dir(cpp_file)
     shutil.copy(cpp_file, out_dir + "/" + basename)
