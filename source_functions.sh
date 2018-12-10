@@ -8,6 +8,13 @@ function zz_docker_export_notebooks_preview_deploy() {
     cp html_output/external/type_name/notebooks/typename/typename.md external/type_name/README.md
 }
 
+function zz_git_push() {
+    cd external/type_name
+    git push
+    cd -
+    git push
+}
+
 function zz_commit_tn_manual() {
     # set -e
     # zz_docker_export_notebooks_preview_deploy && \
