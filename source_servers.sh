@@ -1,1 +1,0 @@
-scripts/tooling/servers.sh
