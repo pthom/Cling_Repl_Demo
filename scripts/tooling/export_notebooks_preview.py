@@ -46,7 +46,7 @@ def directory_files_with_extension(extension:str, directory:str, add_directory:b
 
 def files_with_extension_recursive(directory: str, extension: str):
   result = []
-  for current_dir, _, files in os.walk(directory):
+  for current_dir, _, files in os.walk(directory, followlinks=True):
     if not is_ignored_folder(current_dir):
       for file in files:
         if file.endswith(extension):
@@ -206,6 +206,8 @@ def make_md_index():
 
 if __name__ == "__main__":
   os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
+  files = files_with_extension_recursive(directory= NOTEBOOKS_DIR, extension= ".ipynb")
+  print("{}".format(files))
   mkdirp(HTML_OUTPUT_DIR)
   make_all_notebook_links()
   make_md_index()
