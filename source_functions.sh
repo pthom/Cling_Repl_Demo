@@ -1,3 +1,7 @@
+export ZZ_MAINDIR=$(pwd)
+export ZZ_HTMLOUTPUT=$ZZ_MAINDIR/html_output
+export ZZ_NGINX_ROOT=$ZZ_MAINDIR/root_nginx
+export ZZ_NGINX_DOCKERNAME=code_ballads_nginx
 
 function zz_docker_export_notebooks_preview() {
     ./scripts/tooling/docker_export_notebooks_preview.sh
@@ -45,4 +49,23 @@ function zz_html_output_server() {
 
 function zz_docker_run_notebook() {
     ./scripts/docker_run_notebook.sh
+}
+
+function zz_nginx_deploy_content() {
+    echo "ZZ_NGINX_ROOT=$ZZ_NGINX_ROOT"
+    mkdir -p $ZZ_NGINX_ROOT/cpp
+    cp -a $ZZ_HTMLOUTPUT $ZZ_NGINX_ROOT/cpp/repl_cling
+}
+
+function zz_nginx_run_server() {
+    docker run --name $ZZ_NGINX_DOCKERNAME -v $ZZ_NGINX_ROOT:/usr/share/nginx/html:ro  -p 80:80 -d nginx
+}
+
+function zz_nginx_stop_server() {
+    docker stop $ZZ_NGINX_DOCKERNAME
+}
+
+function zz_nginx_rm_server() {
+    docker stop $ZZ_NGINX_DOCKERNAME
+    docker rm $ZZ_NGINX_DOCKERNAME
 }

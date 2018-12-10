@@ -208,6 +208,22 @@ def make_md_index():
     f.write(final_content)
 
 
+def make_html_redirect():
+  print("make_html_redirect")
+  html_redirect = """
+  <html>
+    <head>
+      <meta http-equiv="refresh" content="0; URL=${URL}">
+    </head>
+  </html>
+  """
+  url = "markdown/_gen.index.md.html"
+  html_redirect = html_redirect.replace("${URL}", url)
+  index_html_file = HTML_OUTPUT_DIR + "/index.html"
+  with open(index_html_file, "w") as f:
+    f.write(html_redirect)
+
+
 if __name__ == "__main__":
   os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
   files = files_with_extension_recursive(directory= NOTEBOOKS_DIR, extension= ".ipynb")
@@ -219,3 +235,4 @@ if __name__ == "__main__":
   make_all_md_previews()
   copy_utilities()
   copy_cpp_examples()
+  make_html_redirect()
