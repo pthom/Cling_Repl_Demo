@@ -1,2 +1,2 @@
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+DIR="$(dirname "$(greadlink -f "$0")")" # readlink on linux (brew install coreutils on mac)
 docker build $DIR -t cling_xeus
