@@ -15,7 +15,7 @@ function zz_git_push() {
     git push
 }
 
-function zz_commit_tn_manual() {
+function zz_tn_commit_manual() {
     # set -e
     # zz_docker_export_notebooks_preview_deploy && \
     cd external/type_name
@@ -24,6 +24,12 @@ function zz_commit_tn_manual() {
     cd -
     git add external/type_name
     git commit -m "update submodule external/typename (updated manual)"
+}
+
+function zz_tn_manual_update_and_push() {
+    zz_docker_export_notebooks_preview_deploy
+    zz_tn_commit_manual
+    zz_git_push
 }
 
 function zz_html_output_server() {
