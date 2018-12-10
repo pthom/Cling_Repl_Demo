@@ -16,19 +16,29 @@ function zz_git_push() {
 }
 
 function zz_tn_commit_manual() {
-    # set -e
-    # zz_docker_export_notebooks_preview_deploy && \
+    if [ "$#" -ne 1 ]; then
+        echo "Need a commit message"
+        return
+    fi
+    commit_msg=$1
+
     cd external/type_name
     git add README.md notebooks/typename/typename.ipynb
-    git commit -m "Update typename.ipynb & readme.md"
+    git commit -m "$commit_msg (docs)"
     cd -
     git add external/type_name
-    git commit -m "update submodule external/typename (updated manual)"
+    git commit -m "update submodule external/ $commit_msg"
 }
 
 function zz_tn_manual_update_and_push() {
+    if [ "$#" -ne 1 ]; then
+        echo "Need a commit message"
+        return
+    fi
+    commit_msg=$1
+
     zz_docker_export_notebooks_preview_deploy
-    zz_tn_commit_manual
+    zz_tn_commit_manual $commit_msg
     zz_git_push
 }
 
