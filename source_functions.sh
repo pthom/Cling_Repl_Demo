@@ -2,6 +2,8 @@ export ZZ_MAINDIR=$(pwd)
 export ZZ_HTMLOUTPUT=$ZZ_MAINDIR/html_output
 export ZZ_NGINX_ROOT=$ZZ_MAINDIR/root_nginx
 export ZZ_NGINX_DOCKERNAME=code_ballads_nginx
+export CB_SERVER=ubuntu@52.47.181.11
+export CB_ROOT=/home/ubuntu/WebRoot/
 
 function zz_docker_export_notebooks_preview() {
     ./scripts/tooling/docker_export_notebooks_preview.sh
@@ -44,7 +46,8 @@ function zz_tn_manual_update_and_push() {
 }
 
 function zz_html_output_server() {
-    ./scripts/html_output_server.sh &
+    cd $ZZ_MAINDIR
+    python3 -m http.server
 }
 
 function zz_docker_run_notebook() {
@@ -67,5 +70,28 @@ function zz_nginx_stop_server() {
 
 function zz_nginx_rm_server() {
     docker stop $ZZ_NGINX_DOCKERNAME
+    docker rm $ZZ_NGINX_DOCKERNAME
+}
+
+function zz_cb_deploy() {
+    rm -rf /tmp/repl_cling &&\
+    cp -a html_output /tmp/repl_cling &&\
+    cd /tmp &&\
+    tar cvfz repl_cling.tgz repl_cling &&\
+    scp repl_cling.tgz $CB_SERVER:$CB_ROOT/cpp &&\
+    cd -
+    ssh $CB_SERVER "ls $CB_ROOT/cpp && cd $CB_ROOT/cpp && tar xvfz repl_cling.tgz"
+}
+
+function zz_cb_run_server() {
+    ssh $CB_SERVER docker run --name $ZZ_NGINX_DOCKERNAME -v $CB_ROOT:/usr/share/nginx/html:ro  -p 80:80 -d nginx
+}
+
+function zz_cb_stop_server() {
+    ssh $CB_SERVER docker stop $ZZ_NGINX_DOCKERNAME
+}
+
+function zz_cb_rm_server() {
+    ssh $CB_SERVER docker stop $ZZ_NGINX_DOCKERNAME &&\
     docker rm $ZZ_NGINX_DOCKERNAME
 }

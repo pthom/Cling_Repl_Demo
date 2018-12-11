@@ -71,7 +71,7 @@ def make_notebook_slideshow(notebook_file):
   print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
     --output-dir={} \
-    --reveal-prefix=/notebooks/reveal.js \
+    --reveal-prefix=reveal.js \
     --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True
    """
   cmd = base_cmd.format(notebook_file, output_dir)

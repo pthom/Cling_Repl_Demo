@@ -22,7 +22,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
     &nbsp;&nbsp;&nbsp;
   </td>
   <td>
-    <a href="/notebooks/1_opencv_example.html">
+    <a href="../notebooks/1_opencv_example.html">
       <img src="images/opencv_example.png" height="200" alt="REPL in the jupyter notebook" />
       C++ REPL inside jupyter notebook
     </a>
