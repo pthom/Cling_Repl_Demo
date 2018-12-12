@@ -11,7 +11,7 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
 <table>
 <tr>
   <td>
-    <a href="Shell_Functional_REPL.md.html">
+    <a href="Shell_Functional_REPL.html">
       <img src="images/shell_example.png" height="200" alt="REPL in the console" />
       C++ REPL in a console
     </a>
@@ -37,9 +37,9 @@ Thus, you can gain in speed of development while the compiler (clang) still chec
 # REPL interactive shell session
 
 You can run a full C++ REPL from your console. In order to test this, the easiest way is to install
-the provided docker container. Refer to [the docker instructions](parts/docker.md.html)
+the provided docker container. Refer to [the docker instructions](parts/docker.html)
 
-See an example of an interactive C++ session [here](Shell_Functional_REPL.md.html).
+See an example of an interactive C++ session [here](Shell_Functional_REPL.html).
 
 # Notebooks
 ### How to navigate in these notebooks
@@ -97,7 +97,7 @@ Choose between 4 ways to view this document:
 ### Docker : quick test without modifying your machine
 If you do not want to modify your machine, you can use the docker image provided inside this repo.
 
-Refer to [the docker instructions](parts/docker.md.html).
+Refer to [the docker instructions](parts/docker.html).
 
 ### Full installation on your machine
 Refer to the instructions on the [xeus cling web page](https://github.com/QuantStack/xeus-cling)
