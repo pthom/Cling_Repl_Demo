@@ -1,10 +1,9 @@
-export ZZ_MAINDIR=$(pwd)
-export ZZ_HTMLOUTPUT=$ZZ_MAINDIR/html_output
-export CB_SERVER=ubuntu@code-ballads.net
-export CB_GENERATED_ROOT=/MAIN/generated-notebooks
+export BZZ_MAINDIR=$(pwd)
+export ZCB_SERVER=ubuntu@code-ballads.net
+export ZCB_GENERATED_ROOT=/MAIN/generated-notebooks
 
 function zz_source() {
-    cd $ZZ_MAINDIR
+    cd $BZZ_MAINDIR
     source source_functions.sh
     cd -
 }
@@ -14,11 +13,11 @@ function zz_docker_export_notebooks_preview() {
 }
 
 function zz_docker_login() {
-    docker run --rm -it -v $ZZ_MAINDIR:/sources_docker cling_xeus /bin/zsh
+    docker run --rm -it -v $BZZ_MAINDIR:/sources_docker cling_xeus /bin/zsh
 }
 
 function zz_docker_login_notebook() {
-    docker run --rm -it -v $ZZ_MAINDIR:/sources_docker -p 8888:8888 cling_xeus /bin/zsh
+    docker run --rm -it -v $BZZ_MAINDIR:/sources_docker -p 8888:8888 cling_xeus /bin/zsh
 }
 
 
@@ -59,7 +58,7 @@ function zz_tn_manual_update_and_push() {
 }
 
 function zz_html_output_server() {
-    cd $ZZ_MAINDIR
+    cd $BZZ_MAINDIR
     python3 -m http.server
 }
 
@@ -73,10 +72,11 @@ function zz_cb_deploy() {
     cp -a html_output /tmp/repl_cling &&\
     cd /tmp &&\
     tar cvfz repl_cling.tgz repl_cling &&\
-    scp repl_cling.tgz $CB_SERVER:$CB_GENERATED_ROOT/cpp &&\
+    scp repl_cling.tgz $ZCB_SERVER:$ZCB_GENERATED_ROOT/cpp &&\
     cd -
-    ssh $CB_SERVER "
-        cd $CB_GENERATED_ROOT/cpp
+    ssh $ZCB_SERVER "
+        cd $ZCB_GENERATED_ROOT/cpp
+        rm -rf repl_cling
         tar xvfz repl_cling.tgz
     "
 }
