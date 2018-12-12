@@ -1,11 +1,26 @@
 export ZZ_MAINDIR=$(pwd)
 export ZZ_HTMLOUTPUT=$ZZ_MAINDIR/html_output
-export CB_SERVER=ubuntu@52.47.181.11
-export CB_ROOT=/home/ubuntu/WebRoot/
+export CB_SERVER=ubuntu@code-ballads.net
+export CB_GENERATED_ROOT=/MAIN/generated-notebooks
+
+function zz_source() {
+    cd $ZZ_MAINDIR
+    source source_functions.sh
+    cd -
+}
 
 function zz_docker_export_notebooks_preview() {
     ./scripts/tooling/docker_export_notebooks_preview.sh
 }
+
+function zz_docker_login() {
+    docker run --rm -it -v $ZZ_MAINDIR:/sources_docker cling_xeus /bin/zsh
+}
+
+function zz_docker_login_notebook() {
+    docker run --rm -it -v $ZZ_MAINDIR:/sources_docker -p 8888:8888 cling_xeus /bin/zsh
+}
+
 
 function zz_tn_git_push() {
     cd external/type_name
@@ -52,25 +67,16 @@ function zz_docker_run_notebook() {
     ./scripts/docker_run_notebook.sh
 }
 
+
 function zz_cb_deploy() {
     rm -rf /tmp/repl_cling &&\
     cp -a html_output /tmp/repl_cling &&\
     cd /tmp &&\
     tar cvfz repl_cling.tgz repl_cling &&\
-    scp repl_cling.tgz $CB_SERVER:$CB_ROOT/cpp &&\
+    scp repl_cling.tgz $CB_SERVER:$CB_GENERATED_ROOT/cpp &&\
     cd -
-    ssh $CB_SERVER "ls $CB_ROOT/cpp && cd $CB_ROOT/cpp && tar xvfz repl_cling.tgz"
-}
-
-function zz_cb_run_server() {
-    ssh $CB_SERVER docker run --name $ZZ_NGINX_DOCKERNAME -v $CB_ROOT:/usr/share/nginx/html:ro  -p 80:80 -d nginx
-}
-
-function zz_cb_stop_server() {
-    ssh $CB_SERVER docker stop $ZZ_NGINX_DOCKERNAME
-}
-
-function zz_cb_rm_server() {
-    ssh $CB_SERVER docker stop $ZZ_NGINX_DOCKERNAME &&\
-    docker rm $ZZ_NGINX_DOCKERNAME
+    ssh $CB_SERVER "
+        cd $CB_GENERATED_ROOT/cpp
+        tar xvfz repl_cling.tgz
+    "
 }
