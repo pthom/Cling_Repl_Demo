@@ -22,6 +22,10 @@ def is_ignored_folder(folder):
   return has_one_match
 
 
+def filename_without_ext(path_to_file):
+  return os.path.splitext(path_to_file)[0]
+
+
 def mkdirp(directory):
     if not os.path.isdir(directory):
         os.makedirs(directory)
@@ -110,7 +114,7 @@ def make_one_markdown_preview(notebook_file):
   print("make_one_markdown_preview: " + notebook_file)
   with open(notebook_file) as f:
     markdown_code = f.read()
-  tmp_notebook = notebook_file + ".ipynb"
+  tmp_notebook = filename_without_ext(notebook_file) + ".ipynb"
   write_markdown_as_notebook(markdown_code, tmp_notebook)
   convert_notebook_to_html(tmp_notebook)
   os.remove(tmp_notebook)
@@ -190,7 +194,7 @@ def copy_cpp_examples():
 
 def make_md_index():
   md_src_file = MARKDOWN_DIR + "/index.template.md"
-  md_dst_file = MARKDOWN_DIR + "/_gen.index.md"
+  md_dst_file = MARKDOWN_DIR + "/index.md"
   with open(md_src_file, "r") as f:
     final_content = f.read()
   lines = final_content.split("\n")
@@ -208,22 +212,6 @@ def make_md_index():
     f.write(final_content)
 
 
-def make_html_redirect():
-  print("make_html_redirect")
-  html_redirect = """
-  <html>
-    <head>
-      <meta http-equiv="refresh" content="0; URL=${URL}">
-    </head>
-  </html>
-  """
-  url = "markdown/_gen.index.md.html"
-  html_redirect = html_redirect.replace("${URL}", url)
-  index_html_file = HTML_OUTPUT_DIR + "/index.html"
-  with open(index_html_file, "w") as f:
-    f.write(html_redirect)
-
-
 if __name__ == "__main__":
   os.environ["PATH"] = os.environ["PATH"] + os.pathsep + "/srv/conda/bin"
   files = files_with_extension_recursive(directory= NOTEBOOKS_DIR, extension= ".ipynb")
@@ -235,4 +223,3 @@ if __name__ == "__main__":
   make_all_md_previews()
   copy_utilities()
   copy_cpp_examples()
-  make_html_redirect()
