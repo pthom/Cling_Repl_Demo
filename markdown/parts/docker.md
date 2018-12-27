@@ -1,6 +1,8 @@
 
 # Docker container in order to run these demos
 
+Clone the repository https://github.com/pthom/Cling_Repl_Demo, and go to the folder [scripts/](https://github.com/pthom/Cling_Repl_Demo/tree/master/scripts)
+
 The Dockerfile provided here will install `cling`, `miniconda`, `jupyter`, `xeus cling` , `opencv`; and it will configure
 jupyter notebook so that you can access it from your host computer.
 
