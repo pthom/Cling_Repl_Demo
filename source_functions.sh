@@ -22,7 +22,7 @@ function zz_docker_login_notebook() {
 
 
 function zz_ct_git_push() {
-    cd external/cleantype
+    cd $BZZ_MAINDIR/external/cleantype
     git push
     cd -
     git push
@@ -35,7 +35,8 @@ function zz_ct_commit_manual() {
     fi
     commit_msg=$1
 
-    cd external/cleantype
+    cp $BZZ_MAINDIR/html_output/external/cleantype/notebooks/cleantype/cleantype.md $BZZ_MAINDIR/external/cleantype/README.md
+    cd $BZZ_MAINDIR/external/cleantype
     git add README.md notebooks/cleantype/cleantype.ipynb
     git commit -m "$commit_msg (docs)"
     cd -
@@ -51,7 +52,6 @@ function zz_ct_manual_update_and_push() {
     commit_msg=$1
 
     zz_docker_export_notebooks_preview
-    cp html_output/external/cleantype/notebooks/cleantype/cleantype.md external/cleantype/README.md
 
     zz_ct_commit_manual $commit_msg
     zz_ct_git_push
