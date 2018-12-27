@@ -63,7 +63,7 @@ View this document:
   target="_blank">as an interactive notebook online</a>
   (opens in a new window, may require 1 minute to load. Be patient!)
 * <a href="http://localhost:8888/notebooks/1_opencv_example.ipynb" target="_blank">
-  as a notebook on your local clone of this repo</a>(Opens in a new window)
+  as a notebook on your local clone of this repo</a> (opens in a new window)
 
 ### A REPL session of C++ functional programming, using fplus
 
@@ -76,7 +76,7 @@ View this document:
   target="_blank">as an interactive notebook online</a>
   (opens in a new window, may require 1 minute to load. Be patient!)
 * <a href="http://localhost:8888/notebooks/2_Functional_REPL.ipynb" target="_blank">
-  as a notebook on your local clone of this repo</a>(Opens in a new window)
+  as a notebook on your local clone of this repo</a> (opens in a new window)
 
 ### Advices and Gotchas when using cling and jupyter
 
@@ -88,7 +88,7 @@ View this document:
   target="_blank">as an interactive notebook online</a>
   (opens in a new window, may require 1 minute to load. Be patient!)
 * <a href="http://localhost:8888/notebooks/3_Advices_And_Gotchas.ipynb" target="_blank">
-  as a notebook on your local clone of this repo</a>(Opens in a new window)
+  as a notebook on your local clone of this repo</a> (opens in a new window)
 
 # Installation : how to test these examples on your computer
 
