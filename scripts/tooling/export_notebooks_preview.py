@@ -70,7 +70,20 @@ def find_all_markdowns():
   return files_with_extension_recursive(MARKDOWN_DIR, ".md")
 
 
+def shall_make_slideshow(notebook_file):
+  with open(notebook_file) as f:
+    metadata = json.load(f)["metadata"]
+  if "output_slideshow" in metadata:
+    if metadata["output_slideshow"]:
+      print("shall_make_slideshow({}) => True", notebook_file)
+      return True
+  print("shall_make_slideshow({}) => False", notebook_file)
+  return False
+
+
 def make_notebook_slideshow(notebook_file):
+  if not shall_make_slideshow(notebook_file):
+    return
   output_dir = filename_to_output_dir(notebook_file)
   print("outputdir = " + output_dir)
   base_cmd = """jupyter nbconvert --to slides {} \
@@ -151,6 +164,10 @@ def extract_notebook_infos(notebook_file: str):
   abstract = cell_data_list[1]
   return title, abstract
 
+def remove_line_matching(text, what_to_match):
+  lines = text.split("\n")
+  lines = filter(lambda line : what_to_match not in line, lines)
+  return "\n".join(lines)
 
 def make_one_notebook_links(notebook_file):
   title, abstract = extract_notebook_infos(notebook_file)
@@ -158,20 +175,22 @@ def make_one_notebook_links(notebook_file):
   md_template = """
 ### {TITLE}
 {ABSTRACT}
-Choose between 4 ways to view this document:
-* <a href="../notebooks/{FILENAME}.html">Static page</a>
-* <a href="../notebooks/{FILENAME}.slides.html" target="_blank"> slideshow</a>(opens in a new window)
+View this document:
+* <a href="../notebooks/{FILENAME}.slides.html" target="_blank">as a slideshow</a>(opens in a new window)
+* <a href="../notebooks/{FILENAME}.html">as a static page</a>
 * <a href="https://mybinder.org/v2/gh/pthom/Cling_Repl_Demo/master?filepath=notebooks%2F{FILENAME}.ipynb"
-  target="_blank">Interactive notebook online</a>
+  target="_blank">as an interactive notebook online</a>
   (opens in a new window, may require 1 minute to load. Be patient!)
 * <a href="{NOTEBOOK_LOCALHOST}/notebooks/{FILENAME}.ipynb" target="_blank">
-  Open notebook from you local clone of this repo</a>(Opens in a new window)
+  as a notebook on your local clone of this repo</a> (opens in a new window)
 """
   md_code = md_template
   md_code = md_code.replace("{NOTEBOOK_LOCALHOST}", NOTEBOOK_LOCALHOST)
   md_code = md_code.replace("{FILENAME}", base_filename)
   md_code = md_code.replace("{ABSTRACT}", abstract)
   md_code = md_code.replace("{TITLE}", title)
+  if not shall_make_slideshow(notebook_file):
+    md_code = remove_line_matching(md_code, "slideshow")
   return md_code
 
 
