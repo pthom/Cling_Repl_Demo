@@ -1,3 +1,4 @@
+#pragma once
 #pragma cling add_library_path("/srv/conda/lib/")
 #pragma cling add_include_path("/srv/conda/include")
 // CONDA_DIR
