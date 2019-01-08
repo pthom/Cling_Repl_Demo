@@ -209,6 +209,10 @@ def copy_cpp_examples():
     basename = os.path.basename(cpp_file)
     out_dir = filename_to_output_dir(cpp_file)
     shutil.copy(cpp_file, out_dir + "/" + basename)
+  for cpp_file in directory_files_with_extension(NOTEBOOKS_DIR, ".h"):
+    basename = os.path.basename(cpp_file)
+    out_dir = filename_to_output_dir(cpp_file)
+    shutil.copy(cpp_file, out_dir + "/" + basename)
 
 
 def make_md_index():
