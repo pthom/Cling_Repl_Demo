@@ -154,6 +154,83 @@ def copy_utilities():
   cmd = "cp -a markdown/movies html_output/markdown/"
   subprocess.run(cmd, shell=True, check=True)
 
+
+def notebook_collect_h1_titles(json_data):
+  cells = json_data["cells"]
+  h1_title_list = []
+  for cell in cells:
+    if cell["cell_type"] == "markdown":
+      for line in cell["source"]:
+        if line[:2] == "# ":
+          line = line.replace("\n", "")
+          h1_title_list.append(line)
+  return h1_title_list
+
+def notebook_make_toc(h1_title_list):
+  html = """# Table of content
+<table>
+<tr><td>
+<p style="text-align: left;">
+__ITEMS__
+</p>
+</tr></td>
+</table>
+"""
+  html_one = "   <a href=\"#__ANCHOR__\">__TITLE__</a><br/>\n"
+  def title_to_anchor(title):
+    anchor = title
+    anchor = anchor.replace("# ", "")
+    anchor = anchor.replace(" ", "-")
+    anchor = anchor.replace("`", "")
+    return anchor
+  html_all = ""
+  for h1_title in h1_title_list:
+    h1_link_text = h1_title.replace("# ", "")
+    anchor = title_to_anchor(h1_title)
+    html_all = html_all + html_one.replace("__TITLE__", h1_link_text).replace("__ANCHOR__", anchor)
+  html = html.replace("__ITEMS__", html_all)
+  html_lines = html.split("\n")
+  html_lines = list(map( lambda s : s + "\n", html_lines ))
+
+  json_toc_cell =   {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": []
+  }
+  json_toc_cell["source"] = html_lines
+  return json_toc_cell
+
+# Table of content in a notebook
+def make_notebook_toc(notebook_file: str):
+  with open(notebook_file, "r") as f:
+    json_str = f.read()
+  json_data = json.loads(json_str)
+  h1_title_list = notebook_collect_h1_titles(json_data)
+  json_toc_cell = notebook_make_toc(h1_title_list)
+  if "Table of content" in json_data["cells"][0]["source"][0]:
+      json_data["cells"] = json_data["cells"][1:]
+  json_data["cells"] = [ json_toc_cell ] + json_data["cells"]
+  out = json.dumps(json_data, sort_keys=True, indent=1)
+  with open(notebook_file, "w") as f:
+    f.write(out)
+
+def notebook_flag_wants_toc(notebook_file):
+  with open(notebook_file, "r") as f:
+    json_str = f.read()
+  json_data = json.loads(json_str)
+  if "toc" in json_data["metadata"]:
+    aux = json_data["metadata"]["toc"]
+    return aux
+  return False
+
+
+def make_all_notebook_tocs():
+  notebooks = find_notebooks(True)
+  for notebook_file in notebooks:
+    if notebook_flag_wants_toc(notebook_file):
+      make_notebook_toc(notebook_file)
+
+
 def extract_notebook_infos(notebook_file: str):
   with open(notebook_file) as f:
     json_str = f.read()
@@ -240,6 +317,7 @@ if __name__ == "__main__":
   files = files_with_extension_recursive(directory= NOTEBOOKS_DIR, extension= ".ipynb")
   print("{}".format(files))
   mkdirp(HTML_OUTPUT_DIR)
+  make_all_notebook_tocs()
   make_all_notebook_links()
   make_md_index()
   make_all_notebook_previews()
