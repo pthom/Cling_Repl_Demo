@@ -179,9 +179,10 @@ __ITEMS__
   html_one = "   <a href=\"#__ANCHOR__\">__TITLE__</a><br/>\n"
   def title_to_anchor(title):
     anchor = title
+    # anchor = anchor.lower()
     anchor = anchor.replace("# ", "")
     anchor = anchor.replace(" ", "-")
-    anchor = anchor.replace("`", "")
+    anchor = anchor.replace(":", "")
     return anchor
   html_all = ""
   for h1_title in h1_title_list:
@@ -205,10 +206,10 @@ def make_notebook_toc(notebook_file: str):
   with open(notebook_file, "r") as f:
     json_str = f.read()
   json_data = json.loads(json_str)
-  h1_title_list = notebook_collect_h1_titles(json_data)
-  json_toc_cell = notebook_make_toc(h1_title_list)
   if "Table of content" in json_data["cells"][0]["source"][0]:
       json_data["cells"] = json_data["cells"][1:]
+  h1_title_list = notebook_collect_h1_titles(json_data)
+  json_toc_cell = notebook_make_toc(h1_title_list)
   json_data["cells"] = [ json_toc_cell ] + json_data["cells"]
   out = json.dumps(json_data, sort_keys=True, indent=1)
   with open(notebook_file, "w") as f:
