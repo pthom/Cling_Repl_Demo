@@ -6,6 +6,7 @@ import jupyter
 import nbformat
 import json
 import shutil
+import copy
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 MAIN_DIR = os.path.realpath(THIS_DIR + "/../..")
@@ -201,6 +202,24 @@ __ITEMS__
   json_toc_cell["source"] = html_lines
   return json_toc_cell
 
+
+def notebook_add_toc_links_after_headers(notebook_cells_i):
+  notebook_cells_o = copy.deepcopy(notebook_cells_i)
+  toc_link = """\n<a href="#Table-of-content"><img src="https://img.shields.io/badge/%3C%20top-E7E7E7.svg" align="right"></a>\n"""
+  for cell in notebook_cells_o:
+    source_no_toc_link = [line for line in cell["source"] if "#Table-of-content" not in line]
+
+    source_with_toc_link = []
+    for line in source_no_toc_link:
+      if line[:2] == "# " or line[:3] == "## ":
+        source_with_toc_link.append(toc_link)
+      source_with_toc_link.append(line)
+
+    cell["source"] = source_with_toc_link
+
+  return notebook_cells_o
+
+
 # Table of content in a notebook
 def make_notebook_toc(notebook_file: str):
   with open(notebook_file, "r") as f:
@@ -210,7 +229,7 @@ def make_notebook_toc(notebook_file: str):
       json_data["cells"] = json_data["cells"][1:]
   h1_title_list = notebook_collect_h1_titles(json_data)
   json_toc_cell = notebook_make_toc(h1_title_list)
-  json_data["cells"] = [ json_toc_cell ] + json_data["cells"]
+  json_data["cells"] = [ json_toc_cell ] + notebook_add_toc_links_after_headers(json_data["cells"])
   out = json.dumps(json_data, sort_keys=True, indent=1)
   with open(notebook_file, "w") as f:
     f.write(out)
