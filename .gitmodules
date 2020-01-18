@@ -4,6 +4,6 @@
 [submodule "notebooks/reveal.js"]
 	path = notebooks/reveal.js
 	url = https://github.com/hakimel/reveal.js.git
-[submodule "external/type_name"]
+[submodule "external/cleantype"]
 	path = external/cleantype
-	url = https://github.com/pthom/type_name.git
+	url = https://github.com/pthom/cleantype.git
