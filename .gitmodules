@@ -6,4 +6,4 @@
 	url = https://github.com/hakimel/reveal.js.git
 [submodule "external/type_name"]
 	path = external/cleantype
-	url = https://github.com/pthom/type_name.git
+	url = https://github.com/pthom/cleantype.git
