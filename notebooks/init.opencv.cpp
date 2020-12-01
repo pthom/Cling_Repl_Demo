@@ -1,8 +1,7 @@
 #pragma once
-#pragma cling add_library_path("/srv/conda/lib/")
-#pragma cling add_include_path("/srv/conda/include")
-// CONDA_DIR
-
+#pragma cling add_library_path("/srv/conda/envs/notebook/lib")
+#pragma cling add_include_path("/srv/conda/envs/notebook/include/opencv4/")
+#pragma cling add_include_path("/srv/conda/envs/notebook/include")
 #pragma cling load("libopencv_core")
 #pragma cling load("libopencv_imgcodecs")
 #pragma cling load("libopencv_imgproc")
